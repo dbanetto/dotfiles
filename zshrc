@@ -53,6 +53,7 @@ export EDITOR='vim'
 # ssh connections
 if [[ -n $SSH_CONNECTION ]]; then
   BULLETTRAIN_IS_SSH_CLIENT=true
+  BULLETTRAIN_CONTEXT_SHOW=true
 fi
 export SSH_KEY_PATH="~/.ssh/rsa_id"
 
