@@ -33,6 +33,9 @@ BULLETTRAIN_GIT_MODIFIED=" "
 BULLETTRAIN_GIT_DIRTY=" Δ"
 BULLETTRAIN_GIT_CLEAN=" "
 BULLETTRAIN_GIT_UNTRACKED=" "
+BULLETTRAIN_GIT_AHEAD=" %F{mangenta}⬆%F{black}"
+BULLETTRAIN_GIT_BEHIND=" %F{mangenta}⬇%F{black}"
+BULLETTRAIN_GIT_DIVERGED=" %F{mangenta}⬍%F{black}"
 
 # Load the theme.
 antigen theme caiogondim/bullet-train-oh-my-zsh-theme bullet-train
