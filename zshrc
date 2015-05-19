@@ -56,6 +56,8 @@ if [[ -n $SSH_CONNECTION ]]; then
   BULLETTRAIN_CONTEXT_SHOW=true
 fi
 export SSH_KEY_PATH="~/.ssh/rsa_id"
+eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
+export SSH_AUTH_SOCK
 
 if [ "$COLORTERM" = "gnome-terminal" ] ; then
 	source /etc/profile.d/vte.sh
