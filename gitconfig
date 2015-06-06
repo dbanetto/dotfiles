@@ -48,3 +48,5 @@
 	stat = status -sb
 [push]
 	default = simple
+[github]
+	user = zyphrus

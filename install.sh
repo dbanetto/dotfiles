@@ -22,8 +22,25 @@ function link {
 	ln -s -f $PWD/$1 $2
 }
 
+function copy {
+	# Check if it exists
+	if [ -f $2 ]
+	then
+		# Only back up non-symlinks
+		if ! [ -L $2 ]
+		then
+			BACKUP_DIR="$(basename $2)-$(date +%Y%m%d)"
+			echo "Backing up $2 to $PWD/.backup/$BACKUP_DIR"
+			mkdir -p $PWD/.backup
+			mv "$2" "$PWD/.backup/$BACKUP_DIR"
+		fi
+	fi
+	echo "Copying $1 to $2"
+	cp -f $PWD/$1 $2
+}
+
 # git
-link gitconfig ~/.gitconfig
+copy gitconfig ~/.gitconfig
 
 # vim
 link vim ~/.vim
