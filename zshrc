@@ -59,6 +59,9 @@ export EDITOR='vim'
 if [[ -n $SSH_CONNECTION ]]; then
   BULLETTRAIN_IS_SSH_CLIENT=true
   BULLETTRAIN_CONTEXT_SHOW=true
+  BULLETTRAIN_DIR_BG=red
+  BULLETTRAIN_DIR_FG=black
+  BULLETTRAIN_GIT_EXTENDED=false
 else
   eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
   export SSH_AUTH_SOCK
