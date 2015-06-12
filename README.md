@@ -14,5 +14,5 @@ run `install.sh`
 
 * xmodmap: swaps esc & caps lock
 
-* zsh with antigen
+* zsh with zgen
 
