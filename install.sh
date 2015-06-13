@@ -50,8 +50,5 @@ link zshrc ~/.zshrc
 # zgen
 git clone https://github.com/tarjoilija/zgen ~/.zgen
 
-# zsh script dir
-mkdir -p ~/.zsh
-
 # xmodmap
 link xmodmap ~/.xmodmap
