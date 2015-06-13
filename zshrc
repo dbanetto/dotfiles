@@ -3,24 +3,6 @@ source $HOME/.zgen/zgen.zsh
 
 export WORKON_HOME=$HOME/.config/virtualenvs
 
-if ! zgen saved; then
-	# Load the oh-my-zshs library.
-	zgen oh-my-zsh
-
-	# Bundles
-	zgen oh-my-zsh plugins/git
-	zgen oh-my-zsh plugins/pip
-	zgen oh-my-zsh plugins/npm
-	zgen oh-my-zsh plugins/virtualenvwrapper
-	zgen oh-my-zsh plugins/web-search
-	zgen oh-my-zsh plugins/git-extras
-	zgen load zsh-users/zsh-completions src
-	zgen load Tarrasch/zsh-bd
-
-	# Load the theme.
-	zgen load caiogondim/bullet-train-oh-my-zsh-theme bullet-train
-fi
-
 # Bullet train config
 BULLETTRAIN_TIME_SHOW=false
 BULLETTRAIN_NVM_SHOW=false
@@ -46,6 +28,24 @@ BULLETTRAIN_GIT_UNTRACKED=" "
 BULLETTRAIN_GIT_AHEAD=" %F{black}⬆%F{black}"
 BULLETTRAIN_GIT_BEHIND=" %F{black}⬇%F{black}"
 BULLETTRAIN_GIT_DIVERGED=" %F{black}⬍%F{black}"
+
+if ! zgen saved; then
+	# Load the oh-my-zshs library.
+	zgen oh-my-zsh
+
+	# Bundles
+	zgen oh-my-zsh plugins/git
+	zgen oh-my-zsh plugins/pip
+	zgen oh-my-zsh plugins/npm
+	zgen oh-my-zsh plugins/virtualenvwrapper
+	zgen oh-my-zsh plugins/web-search
+	zgen oh-my-zsh plugins/git-extras
+	zgen load zsh-users/zsh-completions src
+	zgen load Tarrasch/zsh-bd
+
+	# Load the theme.
+	zgen load caiogondim/bullet-train-oh-my-zsh-theme bullet-train
+fi
 
 
 export PATH="$PATH:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/core_perl:$HOME/.gem/ruby/2.2.0/bin:/opt/java/bin:$HOME/.local/bin"
@@ -74,3 +74,5 @@ alias grep="grep --color=auto --exclude-dir=.cvs --exclude-dir=.git --exclude-di
 export GREP_OPTIONS=
 
 export RUST_SRC_PATH=$HOME/Code/git/rust/src
+
+# vim: ft=zsh
