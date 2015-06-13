@@ -39,13 +39,27 @@ if ! zgen saved; then
 	zgen oh-my-zsh plugins/npm
 	zgen oh-my-zsh plugins/virtualenvwrapper
 	zgen oh-my-zsh plugins/web-search
-	zgen oh-my-zsh plugins/git-extras
 	zgen load zsh-users/zsh-completions src
 	zgen load Tarrasch/zsh-bd
 
+	# completions
+	zgen load zsh-users/zsh-completions src
+	zgen load zyphrus/zsh-scripts
+
 	# Load the theme.
 	zgen load caiogondim/bullet-train-oh-my-zsh-theme bullet-train
+
+	zgen save
 fi
+
+# Hack to fix BULLETTRAIN_GIT_* not being set
+ZSH_THEME_GIT_PROMPT_MODIFIED=$BULLETTRAIN_GIT_MODIFIED
+ZSH_THEME_GIT_PROMPT_DIRTY=$BULLETTRAIN_GIT_DIRTY
+ZSH_THEME_GIT_PROMPT_CLEAN=$BULLETTRAIN_GIT_CLEAN
+ZSH_THEME_GIT_PROMPT_UNTRACKED=$BULLETTRAIN_GIT_UNTRACKED
+ZSH_THEME_GIT_PROMPT_AHEAD=$BULLETTRAIN_GIT_AHEAD
+ZSH_THEME_GIT_PROMPT_BEHIND=$BULLETTRAIN_GIT_BEHIND
+ZSH_THEME_GIT_PROMPT_DIVERGED=$BULLETTRAIN_GIT_DIVERGED
 
 
 export PATH="$PATH:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/core_perl:$HOME/.gem/ruby/2.2.0/bin:/opt/java/bin:$HOME/.local/bin"
