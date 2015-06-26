@@ -47,6 +47,10 @@ link ~/.vim/vimrc ~/.vimrc
 # zsh
 link zshrc ~/.zshrc
 
+# rbenv
+# git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
+# git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+
 # zgen
 git clone https://github.com/tarjoilija/zgen ~/.zgen
 

@@ -6,7 +6,7 @@ export WORKON_HOME=$HOME/.config/virtualenvs
 # Bullet train config
 BULLETTRAIN_TIME_SHOW=false
 BULLETTRAIN_NVM_SHOW=false
-BULLETTRAIN_RVM_SHOW=false # Causes huge slowdown
+BULLETTRAIN_RVM_SHOW=true # Causes huge slowdown
 
 BULLETTRAIN_VIRTUALENV_SHOW=true
 BULLETTRAIN_VIRTUALENV_PREFIX=""
@@ -34,7 +34,6 @@ if ! zgen saved; then
 	zgen oh-my-zsh
 
 	# Bundles
-	zgen oh-my-zsh plugins/git
 	zgen oh-my-zsh plugins/pip
 	zgen oh-my-zsh plugins/npm
 	zgen oh-my-zsh plugins/virtualenvwrapper
@@ -47,7 +46,7 @@ if ! zgen saved; then
 	zgen load zyphrus/zsh-scripts
 
 	# Load the theme.
-	zgen load caiogondim/bullet-train-oh-my-zsh-theme bullet-train
+	zgen load zyphrus/bullet-train-oh-my-zsh-theme bullet-train
 
 	zgen save
 fi
@@ -62,7 +61,9 @@ ZSH_THEME_GIT_PROMPT_BEHIND=$BULLETTRAIN_GIT_BEHIND
 ZSH_THEME_GIT_PROMPT_DIVERGED=$BULLETTRAIN_GIT_DIVERGED
 
 
-export PATH="$PATH:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/core_perl:$HOME/.gem/ruby/2.2.0/bin:/opt/java/bin:$HOME/.local/bin"
+export PATH="$HOME/.rbenv/bin:$PATH:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/core_perl:$HOME/.gem/ruby/2.2.0/bin:/opt/java/bin:$HOME/.local/bin"
+
+eval "$(rbenv init -)"
 
 export LANG=en_GB.UTF-8
 export EDITOR='vim'
