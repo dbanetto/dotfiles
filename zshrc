@@ -68,7 +68,7 @@ ZSH_THEME_GIT_PROMPT_DIVERGED=$BULLETTRAIN_GIT_DIVERGED
 
 export PATH="$HOME/.rbenv/bin:$PATH:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/core_perl:$HOME/.gem/ruby/2.2.0/bin:/opt/java/bin:$HOME/.local/bin"
 
-eval "$(rbenv init -)"
+[ which "rbenv" &> /dev/null ] && eval "$(rbenv init -)"
 
 export LANG=en_GB.UTF-8
 export EDITOR='vim'
