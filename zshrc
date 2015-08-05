@@ -95,4 +95,17 @@ export GREP_OPTIONS=
 
 export RUST_SRC_PATH=$HOME/Code/git/rust/src
 
+alias gc="git commit"
+alias go="git checkout"
+alias gb="git branch"
+alias ga="git add"
+alias gt="git stash"
+alias gta="git stash apply"
+alias gtp="git stash pop"
+alias gts="git stash save"
+alias gs="git status -sb"
+alias gh="git status -sb ."
+alias gd="git diff"
+alias gds="git diff --staged"
+
 # vim: ft=zsh
