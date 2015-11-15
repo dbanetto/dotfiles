@@ -6,8 +6,7 @@ export WORKON_HOME=$HOME/.config/virtualenvs
 # Bullet train config
 BULLETTRAIN_TIME_SHOW=false
 BULLETTRAIN_NVM_SHOW=false
-BULLETTRAIN_RBENV_SHOW=true
-BULLETTRAIN_RVM_SHOW=false
+BULLETTRAIN_RUBY_SHOW=false
 
 BULLETTRAIN_MULTIRUST_SHOW=true
 BULLETTRAIN_MULTIRUST_PREFIX="⚙"
@@ -68,12 +67,10 @@ ZSH_THEME_GIT_PROMPT_DIVERGED=$BULLETTRAIN_GIT_DIVERGED
 
 export GEM_HOME=$(ruby -e 'print Gem.user_dir')
 
-export PATH="$PATH:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/core_perl:$GEM_HOME/bin:/opt/java/bin:$HOME/.local/bin"
-
-[ which "rbenv" &> /dev/null ] && eval "$(rbenv init -)"
+export PATH="$PATH:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/core_perl:$GEM_HOME/bin:$HOME/.local/bin"
 
 export LANG=en_GB.UTF-8
-export EDITOR='vim'
+export EDITOR='nvim'
 
 # ssh connections
 if [[ -n $SSH_CONNECTION ]]; then
