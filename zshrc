@@ -14,7 +14,7 @@ BULLETTRAIN_MULTIRUST_PREFIX="⚙"
 BULLETTRAIN_MULTIRUST_BG=130
 
 BULLETTRAIN_VIRTUALENV_SHOW=true
-BULLETTRAIN_VIRTUALENV_PREFIX="🐍"
+BULLETTRAIN_VIRTUALENV_PREFIX=""
 BULLETTRAIN_VIRTUALENV_BG=214
 BULLETTRAIN_VIRTUALENV_FG=black
 
@@ -66,8 +66,9 @@ ZSH_THEME_GIT_PROMPT_AHEAD=$BULLETTRAIN_GIT_AHEAD
 ZSH_THEME_GIT_PROMPT_BEHIND=$BULLETTRAIN_GIT_BEHIND
 ZSH_THEME_GIT_PROMPT_DIVERGED=$BULLETTRAIN_GIT_DIVERGED
 
+export GEM_HOME=$(ruby -e 'print Gem.user_dir')
 
-export PATH="$HOME/.rbenv/bin:$PATH:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/core_perl:$HOME/.gem/ruby/2.2.0/bin:/opt/java/bin:$HOME/.local/bin"
+export PATH="$PATH:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/core_perl:$GEM_HOME/bin:/opt/java/bin:$HOME/.local/bin"
 
 [ which "rbenv" &> /dev/null ] && eval "$(rbenv init -)"
 
@@ -93,8 +94,6 @@ fi
 
 alias grep="grep --color=auto --exclude-dir=.cvs --exclude-dir=.git --exclude-dir=.hg --exclude-dir=.svn"
 export GREP_OPTIONS=
-
-export RUST_SRC_PATH=$HOME/Code/git/rust/src
 
 alias gc="git commit"
 alias go="git checkout"
