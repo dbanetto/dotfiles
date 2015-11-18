@@ -70,7 +70,7 @@ export GEM_HOME=$(ruby -e 'print Gem.user_dir')
 export PATH="$PATH:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/core_perl:$GEM_HOME/bin:$HOME/.local/bin"
 
 export LANG=en_GB.UTF-8
-export EDITOR='nvim'
+export EDITOR='vim'
 
 # ssh connections
 if [[ -n $SSH_CONNECTION ]]; then

@@ -1,38 +1,33 @@
 #!/bin/bash
 
+# Parameters
+# $1 What to backup
+function backup {
+	# Check if it exists
+	if [ -f $1 ]
+	then
+		# Only back up non-symlinks
+		if ! [ -L $1 ]
+		then
+			BACKUP_DIR="$(basename $1)-$(date +%Y%m%d)"
+			echo "Backing up $1 to $PWD/backup/$BACKUP_DIR"
+			mkdir -p $PWD/backup
+			mv "$1" "$PWD/backup/$BACKUP_DIR"
+		fi
+	fi
+}
+
 #Parameters
 # $1 file to install
 # $2 path & file to install to
 function link {
-	# Check if it exists
-	if [ -f $2 ]
-	then
-		# Only back up non-symlinks
-		if ! [ -L $2 ]
-		then
-			BACKUP_DIR="$(basename $2)-$(date +%Y%m%d)"
-			echo "Backing up $2 to $PWD/backup/$BACKUP_DIR"
-			mkdir -p $PWD/backup
-			mv "$2" "$PWD/backup/$BACKUP_DIR"
-		fi
-	fi
+    backup $2
 	echo "Linking $1 to $2"
 	ln -s -f $PWD/$1 $2
 }
 
 function copy {
-	# Check if it exists
-	if [ -f $2 ]
-	then
-		# Only back up non-symlinks
-		if ! [ -L $2 ]
-		then
-			BACKUP_DIR="$(basename $2)-$(date +%Y%m%d)"
-			echo "Backing up $2 to $PWD/backup/$BACKUP_DIR"
-			mkdir -p $PWD/backup
-			mv "$2" "$PWD/backup/$BACKUP_DIR"
-		fi
-	fi
+    backup $2
 	echo "Copying $1 to $2"
 	cp -f $PWD/$1 $2
 }
@@ -42,7 +37,9 @@ link gitconfig ~/.gitconfig
 
 # vim
 git clone https://github.com/zyphrus/vim ~/.vim
-link ~/.vim/vimrc ~/.vimrc
+
+# nvim
+git clone https://github.com/zyphrus/nvim ~/.config/nvim
 
 # zsh
 link zshrc ~/.zshrc
