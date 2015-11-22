@@ -32,11 +32,8 @@ function copy {
 	cp -f $PWD/$1 $2
 }
 
-# git
-link gitconfig ~/.gitconfig
-
 # vim
-git clone https://github.com/zyphrus/vim ~/.vim
+# git clone https://github.com/zyphrus/vim ~/.vim
 
 # nvim
 git clone https://github.com/zyphrus/nvim ~/.config/nvim
@@ -49,3 +46,10 @@ git clone https://github.com/tarjoilija/zgen ~/.zgen
 
 # xmodmap
 link xmodmap ~/.xmodmap
+
+# git
+link gitconfig ~/.gitconfig
+
+# mpv
+mkdir -p ~/.config/mpv
+link mpv.conf ~/.config/mpv/mpv.conf
