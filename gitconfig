@@ -51,10 +51,8 @@
 [github]
 	user = zyphrus
 [url "ssh://git@github.com/"]
-        insteadOf = https://github.com/
-        insteadOf = http://github.com/
-        insteadOf = git://github.com/
+    insteadOf = http://github.com/
+    insteadOf = git://github.com/
 [url "ssh://git@bitbucket.org/"]
-        insteadOf = https://bitbucket.org/
-        insteadOf = http://bitbucket.org/
-        insteadOf = git://bitbucket.org/
+    insteadOf = http://bitbucket.org/
+    insteadOf = git://bitbucket.org/

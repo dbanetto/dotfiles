@@ -92,6 +92,7 @@ fi
 alias grep="grep --color=auto --exclude-dir=.cvs --exclude-dir=.git --exclude-dir=.hg --exclude-dir=.svn"
 export GREP_OPTIONS=
 
+# git alias
 alias gc="git commit"
 alias go="git checkout"
 alias gb="git branch"
@@ -107,5 +108,8 @@ alias gs="git status -sb"
 alias gh="git status -sb ."
 alias gd="git diff"
 alias gds="git diff --staged"
+
+# bundle alias
+alias be="bundle exec"
 
 # vim: ft=zsh

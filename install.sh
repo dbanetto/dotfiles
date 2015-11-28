@@ -32,6 +32,9 @@ function copy {
 	cp -f $PWD/$1 $2
 }
 
+# Xresouce
+link Xresources ~/.Xresources
+
 # vim
 # git clone https://github.com/zyphrus/vim ~/.vim
 
