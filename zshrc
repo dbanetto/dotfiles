@@ -79,14 +79,15 @@ if [[ -n $SSH_CONNECTION ]]; then
   BULLETTRAIN_DIR_BG=red
   BULLETTRAIN_DIR_FG=black
   BULLETTRAIN_GIT_EXTENDED=false
-else
-  eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
-  export SSH_AUTH_SOCK
 fi
 export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 if [ "$COLORTERM" = "gnome-terminal" ] ; then
 	source /etc/profile.d/vte.sh
+fi
+
+if type tmux >/dev/null 2>&1; then
+    test -z "$TMUX" && tmx $USER@$HOST
 fi
 
 alias grep="grep --color=auto --exclude-dir=.cvs --exclude-dir=.git --exclude-dir=.hg --exclude-dir=.svn"
@@ -112,4 +113,4 @@ alias gds="git diff --staged"
 # bundle alias
 alias be="bundle exec"
 
-# vim: ft=zsh
+# vim: set ts=2 sw=2 expandtab:

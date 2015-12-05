@@ -1,11 +1,12 @@
 URxvt*buffered: true
 URxvt*geometry: 80x25
+URxvt.termName: rxvt-unicode-256color
 
 ! font
 URxvt*font: xft:Droid Sans Mono Dotted for Powerline:size=10
 URxvt*boldFont: xft:Droid Sans Mono Dotted for Powerline:size=10
-urxvt*italicFont: xft:Droid Sans Mono Dotted for Powerline:size=10
-urxvt*bolditalicFont: xft:Droid Sans Mono Dotted for Powerline:size=10
+Urxvt*italicFont: xft:Droid Sans Mono Dotted for Powerline:size=10
+Urxvt*bolditalicFont: xft:Droid Sans Mono Dotted for Powerline:size=10
 URxvt.letterSpace: -1
 
 URxvt.scrollBar: false
