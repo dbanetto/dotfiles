@@ -35,25 +35,25 @@ BULLETTRAIN_GIT_BEHIND=" %F{black}⬇%F{black}"
 BULLETTRAIN_GIT_DIVERGED=" %F{black}⬍%F{black}"
 
 if ! zgen saved; then
-	# Load the oh-my-zshs library.
-	zgen oh-my-zsh
+  # Load the oh-my-zshs library.
+  zgen oh-my-zsh
 
-	# Bundles
-	zgen oh-my-zsh plugins/pip
-	zgen oh-my-zsh plugins/npm
-	zgen oh-my-zsh plugins/virtualenvwrapper
-	zgen oh-my-zsh plugins/web-search
-	zgen load zsh-users/zsh-completions src
-	zgen load Tarrasch/zsh-bd
+  # Bundles
+  zgen oh-my-zsh plugins/pip
+  zgen oh-my-zsh plugins/npm
+  zgen oh-my-zsh plugins/virtualenvwrapper
+  zgen oh-my-zsh plugins/web-search
+  zgen load zsh-users/zsh-completions src
+  zgen load Tarrasch/zsh-bd
 
-	# completions
-	zgen load zsh-users/zsh-completions src
-	zgen load zyphrus/zsh-scripts
+  # completions
+  zgen load zsh-users/zsh-completions src
+  zgen load zyphrus/zsh-scripts
 
-	# Load the theme.
-	zgen load zyphrus/bullet-train-oh-my-zsh-theme bullet-train
+  # Load the theme.
+  zgen load zyphrus/bullet-train-oh-my-zsh-theme bullet-train
 
-	zgen save
+  zgen save
 fi
 
 # Hack to fix BULLETTRAIN_GIT_* not being set
@@ -83,11 +83,13 @@ fi
 export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 if [ "$COLORTERM" = "gnome-terminal" ] ; then
-	source /etc/profile.d/vte.sh
+  source /etc/profile.d/vte.sh
 fi
 
-if type tmux >/dev/null 2>&1; then
+if [ "$TERM" = "rxvt-unicode-256color" ] ; then
+  if type tmux >/dev/null 2>&1; then
     test -z "$TMUX" && tmx $USER@$HOST
+  fi
 fi
 
 alias grep="grep --color=auto --exclude-dir=.cvs --exclude-dir=.git --exclude-dir=.hg --exclude-dir=.svn"
