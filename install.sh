@@ -58,6 +58,7 @@ link mpv.conf ~/.config/mpv/mpv.conf
 
 # tmux
 mkdir -p ~/.local/bin
-wget https://gist.githubusercontent.com/zyphrus/54878fa2b2509835cac7/raw/7169c1345d5f7e13d0dd1b7be0495d289abbe6bd/tmx -O ~/.local/bin/tmx
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+wget https://gist.githubusercontent.com/zyphrus/54878fa2b2509835cac7/raw/7169c1345d5f7e13d0dd1b7be0495d289abbe6bd/tmx -O ~/.local/bin/tmx
+chmod +x ~/.local/bin/tmx
 link tmux.conf ~/.tmux.conf
