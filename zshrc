@@ -7,7 +7,6 @@ export WORKON_HOME=$HOME/.config/virtualenvs
 BULLETTRAIN_TIME_SHOW=false
 BULLETTRAIN_NVM_SHOW=false
 BULLETTRAIN_RUBY_SHOW=false
-
 BULLETTRAIN_MULTIRUST_SHOW=true
 BULLETTRAIN_MULTIRUST_PREFIX="⚙"
 BULLETTRAIN_MULTIRUST_BG=130
@@ -40,9 +39,14 @@ if ! zgen saved; then
 
   # Bundles
   zgen oh-my-zsh plugins/pip
+  zgen oh-my-zsh plugins/gem
   zgen oh-my-zsh plugins/npm
-  zgen oh-my-zsh plugins/virtualenvwrapper
-  zgen oh-my-zsh plugins/web-search
+  zgen oh-my-zsh plugins/node
+  zgen oh-my-zsh plugins/bundler
+  if type virtualenvs >/dev/null 2>&1; then
+    zgen oh-my-zsh plugins/virtualenvwrapper
+  fi
+  zgen oh-my-zsh plugins/django
   zgen load zsh-users/zsh-completions src
   zgen load Tarrasch/zsh-bd
 
@@ -65,7 +69,9 @@ ZSH_THEME_GIT_PROMPT_AHEAD=$BULLETTRAIN_GIT_AHEAD
 ZSH_THEME_GIT_PROMPT_BEHIND=$BULLETTRAIN_GIT_BEHIND
 ZSH_THEME_GIT_PROMPT_DIVERGED=$BULLETTRAIN_GIT_DIVERGED
 
-export GEM_HOME=$(ruby -e 'print Gem.user_dir')
+if type ruby >/dev/null 2>&1; then
+  export GEM_HOME=$(ruby -e 'print Gem.user_dir')
+fi
 
 export PATH="$PATH:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/core_perl:$GEM_HOME/bin:$HOME/.local/bin"
 
@@ -96,6 +102,7 @@ alias grep="grep --color=auto --exclude-dir=.cvs --exclude-dir=.git --exclude-di
 export GREP_OPTIONS=
 
 # git alias
+alias gg="git gui"
 alias gc="git commit"
 alias go="git checkout"
 alias gb="git branch"
@@ -103,12 +110,12 @@ alias ga="git add"
 alias gf="git fetch"
 alias gp="git push"
 alias gl="git pull"
-alias gt="git stash"
-alias gta="git stash apply"
-alias gtp="git stash pop"
+alias gh="git stash"
+alias gha="git stash apply"
+alias ghp="git stash pop"
 alias gts="git stash save"
 alias gs="git status -sb"
-alias gh="git status -sb ."
+alias gsh="git status -sb ."
 alias gd="git diff"
 alias gds="git diff --staged"
 

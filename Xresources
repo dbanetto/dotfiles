@@ -3,10 +3,14 @@ URxvt*geometry: 80x25
 URxvt.termName: rxvt-unicode-256color
 
 ! font
-URxvt*font: xft:Droid Sans Mono Dotted for Powerline:size=10
-URxvt*boldFont: xft:Droid Sans Mono Dotted for Powerline:size=10
-Urxvt*italicFont: xft:Droid Sans Mono Dotted for Powerline:size=10
-Urxvt*bolditalicFont: xft:Droid Sans Mono Dotted for Powerline:size=10
+URxvt*font: xft:Bitstream Vera Sans Mono:size=10:hinting=true,\
+            xft:Terminess Powerline:size=10:hinting=true
+URxvt*boldFont: xft:Bitstream Vera Sans Mono:style=bold:size=10:hinting=true,\
+            xft:Terminess Powerline:size=10:hinting=true
+URxvt*italicFont: xft:Bitstream Vera Sans Mono:style=italic:size=10:hinting=true,\
+            xft:Terminess Powerline:size=10:hinting=true
+URxvt*bolditalicFont: xft:Bitstream Vera Sans Mono:style=bolditalic:size=10:hinting=true,\
+            xft:Terminess Powerline:size=10:hinting=true
 URxvt.letterSpace: -1
 
 URxvt.scrollBar: false
