@@ -102,7 +102,7 @@ alias grep="grep --color=auto --exclude-dir=.cvs --exclude-dir=.git --exclude-di
 export GREP_OPTIONS=
 
 # git alias
-alias gg="git gui"
+alias gg="git gui &"
 alias gc="git commit"
 alias go="git checkout"
 alias gb="git branch"
