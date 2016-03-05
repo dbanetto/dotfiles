@@ -15,8 +15,13 @@ URxvt*italicFont: xft:fontname:style=italic:size=fontsize:antialias=false:hintin
 URxvt*bolditalicFont: xft:fontname:style=bolditalic:size=fontsize:antialias=false:hinting=true,\
             xft:Terminess Powerline:size=fontsize:antialias=false:hinting=true
 
+URxvt.iso14755: false
+URxvt.iso14755_52: false
+URxvt*skipBuiltinGlyphs:    true
+
 /* URxvt.letterSpace: -1 */
 URxvt.scrollBar: false
+URxvt.saveLines: 0
 
 ! url
 URxvt.perl-ext-common: default,matcher
