@@ -73,7 +73,9 @@ if type ruby >/dev/null 2>&1; then
   export GEM_HOME=$(ruby -e 'print Gem.user_dir')
 fi
 
-export PATH="$PATH:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/core_perl:$GEM_HOME/bin:$HOME/.local/bin"
+export npm_config_prefix=~/.node_modules
+
+export PATH="$PATH:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/core_perl:$GEM_HOME/bin:$HOME/.node_modules/bin:$HOME/.local/bin"
 
 export LANG=en_GB.UTF-8
 export EDITOR='vim'
