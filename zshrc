@@ -32,21 +32,35 @@ BULLETTRAIN_GIT_UNTRACKED=" "
 BULLETTRAIN_GIT_AHEAD=" %F{black}⬆%F{black}"
 BULLETTRAIN_GIT_BEHIND=" %F{black}⬇%F{black}"
 BULLETTRAIN_GIT_DIVERGED=" %F{black}⬍%F{black}"
+BULLETTRAIN_HG_SHOW=false
 
 if ! zgen saved; then
   # Load the oh-my-zshs library.
   zgen oh-my-zsh
 
-  # Bundles
-  zgen oh-my-zsh plugins/pip
-  zgen oh-my-zsh plugins/gem
-  zgen oh-my-zsh plugins/npm
-  zgen oh-my-zsh plugins/node
-  zgen oh-my-zsh plugins/bundler
+  ## Bundles
+  # optionals
+  if [[ "$(uname)" == "Darwin" ]] ; then
+    zgen oh-my-zsh plugins/brew
+    zgen oh-my-zsh plugins/osx
+  fi
+
   if type virtualenvs >/dev/null 2>&1; then
     zgen oh-my-zsh plugins/virtualenvwrapper
   fi
+
+  # tools
+  zgen oh-my-zsh plugins/heroku
+  
+  # languages & package managers
+  zgen oh-my-zsh plugins/pip
   zgen oh-my-zsh plugins/django
+  zgen oh-my-zsh plugins/gem
+  zgen oh-my-zsh plugins/bundler
+  zgen oh-my-zsh plugins/node
+  zgen oh-my-zsh plugins/npm
+
+  # other
   zgen load zsh-users/zsh-completions src
   zgen load Tarrasch/zsh-bd
 
@@ -54,7 +68,7 @@ if ! zgen saved; then
   zgen load zsh-users/zsh-completions src
   zgen load zyphrus/zsh-scripts
 
-  # Load the theme.
+  # theme
   zgen load zyphrus/bullet-train-oh-my-zsh-theme bullet-train
 
   zgen save
@@ -78,7 +92,11 @@ export npm_config_prefix=~/.node_modules
 export PATH="$PATH:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/core_perl:$GEM_HOME/bin:$HOME/.node_modules/bin:$HOME/.local/bin"
 
 export LANG=en_GB.UTF-8
-export EDITOR='vim'
+if type nvim >/dev/null 2>&1; then
+  export EDITOR='nvim'
+else
+  export EDITOR='vim'
+fi
 
 # ssh connections
 if [[ -n $SSH_CONNECTION ]]; then
@@ -94,9 +112,9 @@ if [ "$COLORTERM" = "gnome-terminal" ] ; then
   source /etc/profile.d/vte.sh
 fi
 
-if [ "$TERM" = "rxvt-unicode-256color" ] ; then
+if [[ "$TERM" = "rxvt-unicode-256color" || "$(uname)" == "Darwin" ]] ; then
   if type tmux >/dev/null 2>&1; then
-    test -z "$TMUX" && tmx $USER@$HOST
+    test -z "$TMUX" && tmx home
   fi
 fi
 
