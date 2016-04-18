@@ -1,8 +1,6 @@
 [user]
 	email = david@barnett.net.nz
 	name = David Barnett
-[core]
-	editor = vim
 [help]
 	autocorrect = 3
 [credential]
