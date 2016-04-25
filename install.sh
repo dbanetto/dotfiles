@@ -64,3 +64,6 @@ chmod +x ~/.local/bin/tmx
 link tmux.conf ~/.tmux.conf
 mkdir -p ~/.tmux
 link osx.conf ~/.tmux/osx.conf
+
+# rbenv
+git clone https://github.com/rbenv/rbenv.git ~/.rbenv

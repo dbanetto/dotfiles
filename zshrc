@@ -48,6 +48,9 @@ if ! zgen saved; then
   if type virtualenvs >/dev/null 2>&1; then
     zgen oh-my-zsh plugins/virtualenvwrapper
   fi
+  if type rbenv >/dev/null 2>&1; then
+    zgen oh-my-zsh plugins/rbenv
+  fi
 
   # tools
   zgen oh-my-zsh plugins/heroku
@@ -89,7 +92,11 @@ fi
 
 export npm_config_prefix=~/.node_modules
 
-export PATH="$PATH:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/core_perl:$GEM_HOME/bin:$HOME/.node_modules/bin:$HOME/.local/bin"
+export PATH="$HOME/.rbenv/bin:$PATH:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/core_perl:$GEM_HOME/bin:$HOME/.node_modules/bin:$HOME/.local/bin"
+
+if type rbenv >/dev/null 2>&1; then
+  eval "$(rbenv init -)"
+fi
 
 export LANG=en_GB.UTF-8
 if type nvim >/dev/null 2>&1; then
