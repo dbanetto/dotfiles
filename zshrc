@@ -86,17 +86,19 @@ ZSH_THEME_GIT_PROMPT_AHEAD=$BULLETTRAIN_GIT_AHEAD
 ZSH_THEME_GIT_PROMPT_BEHIND=$BULLETTRAIN_GIT_BEHIND
 ZSH_THEME_GIT_PROMPT_DIVERGED=$BULLETTRAIN_GIT_DIVERGED
 
-if type ruby >/dev/null 2>&1; then
-  export GEM_HOME=$(ruby -e 'print Gem.user_dir')
-fi
-
-export npm_config_prefix=~/.node_modules
-
-export PATH="$HOME/.rbenv/bin:$PATH:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/core_perl:$GEM_HOME/bin:$HOME/.node_modules/bin:$HOME/.local/bin"
+export PATH="$HOME/.rbenv/bin:$PATH"
 
 if type rbenv >/dev/null 2>&1; then
   eval "$(rbenv init -)"
 fi
+
+if type ruby >/dev/null 2>&1; then
+  export GEM_HOME=$(ruby -e 'print Gem.user_dir')
+fi
+
+export npm_config_prefix=$HOME/.node_modules
+
+export PATH="$PATH:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/core_perl:$GEM_HOME/bin:$npm_config_prefix/bin:$HOME/.local/bin"
 
 export LANG=en_GB.UTF-8
 if type nvim >/dev/null 2>&1; then
@@ -147,6 +149,7 @@ alias gd="git diff"
 alias gds="git diff --staged"
 
 # bundle alias
+alias b="bundle"
 alias be="bundle exec"
 
 # vim: set ts=2 sw=2 expandtab:
