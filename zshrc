@@ -45,7 +45,7 @@ if ! zgen saved; then
     zgen oh-my-zsh plugins/osx
   fi
 
-  if type virtualenvs >/dev/null 2>&1; then
+  if type virtualenv >/dev/null 2>&1; then
     zgen oh-my-zsh plugins/virtualenvwrapper
   fi
   if type rbenv >/dev/null 2>&1; then
