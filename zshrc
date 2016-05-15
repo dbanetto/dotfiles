@@ -4,13 +4,6 @@ source $HOME/.zgen/zgen.zsh
 export WORKON_HOME=$HOME/.config/virtualenvs
 
 # Bullet train config
-BULLETTRAIN_TIME_SHOW=false
-BULLETTRAIN_NVM_SHOW=false
-BULLETTRAIN_RUBY_SHOW=false
-BULLETTRAIN_RUST_SHOW=true
-BULLETTRAIN_RUST_PREFIX="⚙"
-BULLETTRAIN_RUST_BG=130
-
 BULLETTRAIN_VIRTUALENV_SHOW=true
 BULLETTRAIN_VIRTUALENV_PREFIX=""
 BULLETTRAIN_VIRTUALENV_BG=214
@@ -34,6 +27,34 @@ BULLETTRAIN_GIT_BEHIND=" %F{black}⬇%F{black}"
 BULLETTRAIN_GIT_DIVERGED=" %F{black}⬍%F{black}"
 BULLETTRAIN_HG_SHOW=false
 
+# custom bullettrain prompts
+prompt_rust() {
+    if [ "$(command -v multirust)" ]; then
+        local override="$(multirust ctl override-toolchain)"
+        if [[ ! "$override" == "$(multirust ctl default-toolchain)" ]]
+        then
+            prompt_segment 130 white "⚙ $override"
+        fi
+    fi
+}
+
+# segment ordering
+BULLETTRAIN_PROMPT_ORDER=(
+    status
+    custom
+    context
+    dir
+    ruby
+    virtualenv
+    nvm
+    rust
+    go
+    git
+    hg
+    cmd_exec_time
+)
+
+# zgen
 if ! zgen saved; then
   # Load the oh-my-zshs library.
   zgen oh-my-zsh
@@ -72,7 +93,7 @@ if ! zgen saved; then
   zgen load zyphrus/zsh-scripts
 
   # theme
-  zgen load zyphrus/bullet-train-oh-my-zsh-theme bullet-train
+  zgen load caiogondim/bullet-train-oh-my-zsh-theme bullet-train
 
   zgen save
 fi
