@@ -38,6 +38,15 @@ prompt_rust() {
     fi
 }
 
+prompt_ruby() {
+  if [ command -v rbenv > /dev/null 2>&1 ]; then
+    local current = $(rbenv version | sed -e 's/ (set.*$//')
+    if [[ ! "$(rbenv global)" == "$current" ]]; then
+      prompt_segment $BULLETTRAIN_RUBY_BG $BULLETTRAIN_RUBY_FG $BULLETTRAIN_RUBY_PREFIX" $current"
+    fi
+  fi
+}
+
 # segment ordering
 BULLETTRAIN_PROMPT_ORDER=(
     status
