@@ -151,14 +151,15 @@ if [ "$COLORTERM" = "gnome-terminal" ] ; then
   source /etc/profile.d/vte.sh
 fi
 
-if [[ "$TERM" = "rxvt-unicode-256color" || "$(uname)" == "Darwin" ]] ; then
+if [[ "$TERM" = "rxvt-unicode-256color" && -z $SSH_CONNECTION ]] ; then
   if type tmux >/dev/null 2>&1; then
     test -z "$TMUX" && tmx home
   fi
 fi
 
+## aliases
+
 alias grep="grep --color=auto --exclude-dir=.cvs --exclude-dir=.git --exclude-dir=.hg --exclude-dir=.svn"
-export GREP_OPTIONS=
 
 # git alias
 alias gg="git gui &"
