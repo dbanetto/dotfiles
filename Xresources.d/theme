@@ -1,0 +1,31 @@
+!Theme Twelve
+
+! black
+*color0: #282A2E
+*color8: #373B41
+! red
+*color1: #A54242
+*color9: #CC6666
+! green
+*color2: #5F9440
+*color10: #7EBD68
+! yellow
+*color3: #DE935F
+*color11: #F0C674
+! blue
+*color4: #3465A4
+*color12: #81A2BE
+! magenta
+*color5: #85678F
+*color13: #B294BB
+! cyan
+*color6: #5E8D87
+*color14: #8ABEB7
+! white
+*color7: #D3D7CF
+*color15: #EEEEEC
+
+#define termbg #1D1F21
+#define termfg #DEDEDE
+
+! vim: ft=xdefaults

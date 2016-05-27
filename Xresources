@@ -1,59 +1,10 @@
-URxvt*buffered: true
-URxvt*geometry: 80x25
-URxvt.termName: rxvt-unicode-256color
-/* Bitstream Vera Sans Mono */
-#define fontname Droid Sans Mono
-#define fontsize 10
+! apps
+#include ".config/Xresouces.d/urxvt"
 
-! font
-URxvt*font: xft:fontname:size=fontsize:antialias=false:hinting=true,\
-            xft:Terminess Powerline:size=fontsize:antialias=false:hinting=true
-URxvt*boldFont: xft:fontname:style=bold:size=fontsize,\
-            xft:Terminess Powerline:size=fontsize:antialias=false:hinting=true
-URxvt*italicFont: xft:fontname:style=italic:size=fontsize:antialias=false:hinting=true,\
-            xft:Terminess Powerline:size=fontsize:antialias=false:hinting=true
-URxvt*bolditalicFont: xft:fontname:style=bolditalic:size=fontsize:antialias=false:hinting=true,\
-            xft:Terminess Powerline:size=fontsize:antialias=false:hinting=true
+! theme
+#include ".config/Xresouces.d/theme"
 
-URxvt.iso14755: false
-URxvt.iso14755_52: false
-URxvt*skipBuiltinGlyphs:    true
+*background: termbg
+*foreground: termfg
 
-/* URxvt.letterSpace: -1 */
-URxvt.scrollBar: false
-URxvt.saveLines: 0
-
-! url
-URxvt.perl-ext-common: default,matcher
-URxvt.url-launcher: /usr/bin/firefox
-URxvt.matcher.button: 1
-
-URxvt.depth: 32
-!Theme Twelve
-*background: #1D1F21
-*foreground: #DEDEDE
-
-! black
-*color0: #282A2E
-*color8: #373B41
-! red
-*color1: #A54242
-*color9: #CC6666
-! green
-*color2: #5F9440
-*color10: #7EBD68
-! yellow
-*color3: #DE935F
-*color11: #F0C674
-! blue
-*color4: #3465A4
-*color12: #81A2BE
-! magenta
-*color5: #85678F
-*color13: #B294BB
-! cyan
-*color6: #5E8D87
-*color14: #8ABEB7
-! white
-*color7: #D3D7CF
-*color15: #EEEEEC
+! vim: ft=xdefaults

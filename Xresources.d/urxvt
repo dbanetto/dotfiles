@@ -1,0 +1,32 @@
+!! urxvt config
+
+! common
+URxvt*buffered: true
+URxvt*geometry: 80x25
+URxvt.termName: rxvt-unicode-256color
+
+URxvt.scrollBar: false
+URxvt.saveLines: 0
+
+! font
+#define fontname Droid Sans Mono
+#define fontsize 10
+URxvt.depth: 32
+
+URxvt*font: xft:fontname:size=fontsize:antialias=false:hinting=true,\
+            xft:Terminess Powerline:size=fontsize:antialias=false:hinting=true
+URxvt*boldFont: xft:fontname:style=bold:size=fontsize,\
+            xft:Terminess Powerline:size=fontsize:antialias=false:hinting=true
+URxvt*italicFont: xft:fontname:style=italic:size=fontsize:antialias=false:hinting=true,\
+            xft:Terminess Powerline:size=fontsize:antialias=false:hinting=true
+URxvt*bolditalicFont: xft:fontname:style=bolditalic:size=fontsize:antialias=false:hinting=true,\
+            xft:Terminess Powerline:size=fontsize:antialias=false:hinting=true
+
+
+! url
+URxvt.perl-ext-common: default,matcher
+URxvt.url-launcher: /usr/bin/firefox
+URxvt.matcher.button: 1
+
+
+! vim: ft=xdefaults
