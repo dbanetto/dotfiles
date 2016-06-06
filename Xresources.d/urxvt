@@ -9,7 +9,7 @@ URxvt.scrollBar: false
 URxvt.saveLines: 0
 
 ! font
-#define fontname Droid Sans Mono
+#define fontname Roboto Mono
 #define fontsize 10
 URxvt.depth: 32
 
