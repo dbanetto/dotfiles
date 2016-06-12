@@ -8,11 +8,10 @@ run `install.sh`
 
 ## What is inside?
 
-* gitconfig
+* gitconfig + global gitignore
 
-* vim config
-
-* xmodmap: swaps esc & caps lock
+* Xresources
 
 * zsh with zgen
 
+* tmux

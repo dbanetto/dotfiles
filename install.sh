@@ -34,7 +34,7 @@ function copy {
 
 ## (n)vim
 git clone https://github.com/zyphrus/nvim ~/.config/nvim
-link ~/.config/nvim/vimrc ~/.vimrc
+ln -s -f  ~/.config/nvim/vimrc ~/.vimrc
 
 ## zsh
 link zshrc ~/.zshrc
