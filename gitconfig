@@ -54,3 +54,5 @@
 [url "ssh://git@bitbucket.org/"]
     insteadOf = http://bitbucket.org/
     insteadOf = git://bitbucket.org/
+[commit]
+	verbose = 1
