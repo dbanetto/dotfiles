@@ -56,3 +56,5 @@
     insteadOf = git://bitbucket.org/
 [commit]
 	verbose = 1
+[diff]
+	compactionheuristic = 1

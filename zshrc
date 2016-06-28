@@ -82,21 +82,6 @@ if ! zgen saved; then
     zgen oh-my-zsh plugins/rbenv
   fi
 
-  # tools
-  zgen oh-my-zsh plugins/heroku
-  
-  # languages & package managers
-  zgen oh-my-zsh plugins/pip
-  zgen oh-my-zsh plugins/django
-  zgen oh-my-zsh plugins/gem
-  zgen oh-my-zsh plugins/bundler
-  zgen oh-my-zsh plugins/node
-  zgen oh-my-zsh plugins/npm
-
-  # other
-  zgen load zsh-users/zsh-completions src
-  zgen load Tarrasch/zsh-bd
-
   # completions
   zgen load zsh-users/zsh-completions src
   zgen load zyphrus/zsh-scripts
@@ -176,5 +161,4 @@ alias gds="git diff --staged"
 # bundle alias
 alias b="bundle"
 alias be="bundle exec"
-
 # vim: set ts=2 sw=2 expandtab:
