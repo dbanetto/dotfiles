@@ -3,6 +3,7 @@
 
 ! theme
 #include ".config/Xresouces.d/theme"
+#include ".config/Xresouces.d/rofi"
 
 *background: termbg
 *foreground: termfg
