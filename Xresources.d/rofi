@@ -3,6 +3,7 @@ rofi.width: 60
 rofi.lines: 10
 rofi.columns: 1
 rofi.font: Roboto Mono 15
+rofi.fuzzy: true
 
 rofi.color-enabled: true
 rofi.color-window: #273238, #273238, #1e2529
