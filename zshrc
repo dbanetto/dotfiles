@@ -27,17 +27,6 @@ BULLETTRAIN_GIT_BEHIND=" %F{black}⬇%F{black}"
 BULLETTRAIN_GIT_DIVERGED=" %F{black}⬍%F{black}"
 BULLETTRAIN_HG_SHOW=false
 
-# custom bullettrain prompts
-prompt_rust() {
-    if [ "$(command -v multirust)" ]; then
-        local override="$(multirust ctl override-toolchain)"
-        if [[ ! "$override" == "$(multirust ctl default-toolchain)" ]]
-        then
-            prompt_segment 130 white "⚙ $override"
-        fi
-    fi
-}
-
 prompt_ruby() {
   if [ command -v rbenv > /dev/null 2>&1 ]; then
     local current = $(rbenv version | sed -e 's/ (set.*$//')
@@ -56,7 +45,6 @@ BULLETTRAIN_PROMPT_ORDER=(
     ruby
     virtualenv
     nvm
-    rust
     go
     git
     hg
@@ -143,15 +131,15 @@ alias grep="grep --color=auto --exclude-dir=.cvs --exclude-dir=.git --exclude-di
 # git alias
 alias gg="git gui &"
 alias gc="git commit"
-alias go="git checkout"
+alias gh="git checkout"
 alias gb="git branch"
 alias ga="git add"
 alias gf="git fetch"
 alias gp="git push"
 alias gl="git pull"
-alias gh="git stash"
-alias gha="git stash apply"
-alias ghp="git stash pop"
+alias gt="git stash"
+alias gta="git stash apply"
+alias gtp="git stash pop"
 alias gts="git stash save"
 alias gs="git status -sb"
 alias gsh="git status -sb ."
