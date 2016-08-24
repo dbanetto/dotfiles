@@ -125,7 +125,6 @@ if [ "$COLORTERM" = "gnome-terminal" ] ; then
 fi
 
 ## aliases
-
 alias grep="grep --color=auto --exclude-dir=.cvs --exclude-dir=.git --exclude-dir=.hg --exclude-dir=.svn"
 
 # git alias
@@ -145,6 +144,10 @@ alias gs="git status -sb"
 alias gsh="git status -sb ."
 alias gd="git diff"
 alias gds="git diff --staged"
+alias gr="git reset"
+alias grh="git reset --hard"
+alias glrm="git pull --rebase origin master"
+
 
 # bundle alias
 alias b="bundle"
