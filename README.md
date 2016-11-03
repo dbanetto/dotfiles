@@ -15,3 +15,5 @@ run `install.sh`
 * zsh with zgen
 
 * tmux
+
+* spacemacs
