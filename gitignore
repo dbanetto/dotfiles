@@ -3,3 +3,4 @@
 *.swap
 tags
 .ruby-version
+.tern-port
