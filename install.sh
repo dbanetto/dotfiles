@@ -76,10 +76,4 @@ if [[ $(uname) == "Linux" ]] ; then
   link Xresources.d ~/.config/Xresouces.d
 fi
 
-# spacemacs
-if type emacs >/dev/null 2>&1 ; then
-  link spacemacs ~/.spacemacs
-  git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
-fi
-
 # vim: ft=sh:ts=2:sw=2:et
