@@ -1,7 +1,19 @@
-source $HOME/.zgen/zgen.zsh
 [[ "$TERM" == "xterm" ]] && export TERM=xterm-256color
+export PATH="$HOME/.rbenv/bin:$PATH"
 
+if type rbenv >/dev/null 2>&1; then
+  eval "$(rbenv init -)"
+fi
+
+if type ruby >/dev/null 2>&1; then
+  export GEM_HOME=$(ruby -e 'print Gem.user_dir')
+fi
+
+export npm_config_prefix=$HOME/.node_modules
+
+export PATH="$PATH:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/core_perl:$GEM_HOME/bin:$npm_config_prefix/bin:$HOME/.local/bin"
 export WORKON_HOME=$HOME/.config/virtualenvs
+
 
 # Bullet train config
 BULLETTRAIN_VIRTUALENV_SHOW=true
@@ -39,55 +51,13 @@ prompt_ruby() {
 # segment ordering
 BULLETTRAIN_PROMPT_ORDER=(
     status
-    custom
     context
     dir
     ruby
     virtualenv
-    nvm
-    go
     git
-    hg
     cmd_exec_time
 )
-
-# zgen
-if ! zgen saved; then
-  # Load the oh-my-zshs library.
-  zgen oh-my-zsh
-
-  ## Bundles
-  # optionals
-  if [[ "$(uname)" == "Darwin" ]] ; then
-    zgen oh-my-zsh plugins/brew
-    zgen oh-my-zsh plugins/osx
-  fi
-
-  if type virtualenv >/dev/null 2>&1; then
-    zgen oh-my-zsh plugins/virtualenvwrapper
-  fi
-  if type rbenv >/dev/null 2>&1; then
-    zgen oh-my-zsh plugins/rbenv
-  fi
-
-  # completions
-  zgen load zsh-users/zsh-completions src
-  zgen load zyphrus/zsh-scripts
-
-  # theme
-  zgen load caiogondim/bullet-train-oh-my-zsh-theme bullet-train
-
-  zgen save
-fi
-
-# Hack to fix BULLETTRAIN_GIT_* not being set
-ZSH_THEME_GIT_PROMPT_MODIFIED=$BULLETTRAIN_GIT_MODIFIED
-ZSH_THEME_GIT_PROMPT_DIRTY=$BULLETTRAIN_GIT_DIRTY
-ZSH_THEME_GIT_PROMPT_CLEAN=$BULLETTRAIN_GIT_CLEAN
-ZSH_THEME_GIT_PROMPT_UNTRACKED=$BULLETTRAIN_GIT_UNTRACKED
-ZSH_THEME_GIT_PROMPT_AHEAD=$BULLETTRAIN_GIT_AHEAD
-ZSH_THEME_GIT_PROMPT_BEHIND=$BULLETTRAIN_GIT_BEHIND
-ZSH_THEME_GIT_PROMPT_DIVERGED=$BULLETTRAIN_GIT_DIVERGED
 
 export PATH="$HOME/.rbenv/bin:$PATH"
 
@@ -128,7 +98,6 @@ fi
 alias grep="grep --color=auto --exclude-dir=.cvs --exclude-dir=.git --exclude-dir=.hg --exclude-dir=.svn"
 
 # git alias
-alias gg="git gui &"
 alias gc="git commit"
 alias gh="git checkout"
 alias gb="git branch"
@@ -148,8 +117,47 @@ alias gr="git reset"
 alias grh="git reset --hard"
 alias glrm="git pull --rebase origin master"
 
-
 # bundle alias
 alias b="bundle"
 alias be="bundle exec"
+
+# zgen
+source $HOME/.zgen/zgen.zsh
+if ! zgen saved; then
+  # Load the oh-my-zshs library.
+  zgen oh-my-zsh
+
+  ## Bundles
+  # optionals
+  if [[ "$(uname)" == "Darwin" ]] ; then
+    zgen oh-my-zsh plugins/brew
+    zgen oh-my-zsh plugins/osx
+  fi
+
+  if type virtualenv >/dev/null 2>&1; then
+    zgen oh-my-zsh plugins/virtualenvwrapper
+  fi
+  if type rbenv >/dev/null 2>&1; then
+    zgen oh-my-zsh plugins/rbenv
+  fi
+
+  # completions
+  zgen load zsh-users/zsh-completions src
+  zgen load zyphrus/zsh-scripts
+
+  # theme
+  zgen load caiogondim/bullet-train-oh-my-zsh-theme bullet-train
+
+  zgen save
+fi
+
+# Hack to fix BULLETTRAIN_GIT_* not being set
+ZSH_THEME_GIT_PROMPT_MODIFIED=$BULLETTRAIN_GIT_MODIFIED
+ZSH_THEME_GIT_PROMPT_DIRTY=$BULLETTRAIN_GIT_DIRTY
+ZSH_THEME_GIT_PROMPT_CLEAN=$BULLETTRAIN_GIT_CLEAN
+ZSH_THEME_GIT_PROMPT_UNTRACKED=$BULLETTRAIN_GIT_UNTRACKED
+ZSH_THEME_GIT_PROMPT_AHEAD=$BULLETTRAIN_GIT_AHEAD
+ZSH_THEME_GIT_PROMPT_BEHIND=$BULLETTRAIN_GIT_BEHIND
+ZSH_THEME_GIT_PROMPT_DIVERGED=$BULLETTRAIN_GIT_DIVERGED
+
 # vim: set ts=2 sw=2 expandtab:
