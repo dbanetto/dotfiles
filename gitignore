@@ -2,5 +2,6 @@
 *~
 *.swap
 tags
+tags.lock
 .ruby-version
 .tern-port
