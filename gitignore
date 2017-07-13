@@ -3,5 +3,8 @@
 *.swap
 tags
 tags.lock
+tags.temp
 .ruby-version
 .tern-port
+*.iml
+.idea/
