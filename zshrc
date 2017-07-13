@@ -1,4 +1,5 @@
 [[ "$TERM" == "xterm" ]] && export TERM=xterm-256color
+
 export PATH="$HOME/.rbenv/bin:$PATH"
 
 if type rbenv >/dev/null 2>&1; then
@@ -10,19 +11,10 @@ if type ruby >/dev/null 2>&1; then
 fi
 
 export npm_config_prefix=$HOME/.node_modules
-
-export PATH="$PATH:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/core_perl:$GEM_HOME/bin:$npm_config_prefix/bin:$HOME/.local/bin"
 export WORKON_HOME=$HOME/.config/virtualenvs
 
-if type ruby >/dev/null 2>&1; then
-  export GEM_HOME=$(ruby -e 'print Gem.user_dir')
-fi
+export PATH="$PATH:/usr/bin/core_perl:$GEM_HOME/bin:$npm_config_prefix/bin:$HOME/.local/bin"
 
-export npm_config_prefix=$HOME/.node_modules
-
-export PATH="$PATH:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/core_perl:$GEM_HOME/bin:$npm_config_prefix/bin:$HOME/.local/bin"
-
-export LANG=en_GB.UTF-8
 if type nvim >/dev/null 2>&1; then
   export EDITOR='nvim'
 else
