@@ -1,19 +1,6 @@
 [[ "$TERM" == "xterm" ]] && export TERM=xterm-256color
 
-export PATH="$HOME/.rbenv/bin:$PATH"
-
-if type rbenv >/dev/null 2>&1; then
-  eval "$(rbenv init -)"
-fi
-
-if type ruby >/dev/null 2>&1; then
-  export GEM_HOME=$(ruby -e 'print Gem.user_dir')
-fi
-
-export npm_config_prefix=$HOME/.node_modules
-export WORKON_HOME=$HOME/.config/virtualenvs
-
-export PATH="$PATH:/usr/bin/core_perl:$GEM_HOME/bin:$npm_config_prefix/bin:$HOME/.local/bin"
+export PATH="$PATH:$HOME/.local/bin"
 
 if type nvim >/dev/null 2>&1; then
   export EDITOR='nvim'
@@ -23,7 +10,6 @@ fi
 
 # ssh connections
 # if [[ -n $SSH_CONNECTION ]]; then ; fi
-export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 if [ "$COLORTERM" = "gnome-terminal" ] ; then
   source /etc/profile.d/vte.sh
