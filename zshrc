@@ -18,7 +18,6 @@ fi
 zstyle ':prezto:*:*' color 'yes'
 
 ## zgen
-ZGEN_PREZTO_REPO='zsh-users'
 source $HOME/.zgen/zgen.zsh
 if ! zgen saved; then
   zgen prezto
