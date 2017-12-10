@@ -1,9 +1,11 @@
+rofi.modi: window,drun,run,ssh
 rofi.opacity: 95
 rofi.width: 60
 rofi.lines: 10
 rofi.columns: 1
 rofi.font: Roboto Mono 15
 rofi.fuzzy: true
+rofi.show-icons: true
 
 rofi.color-enabled: true
 rofi.color-window: #273238, #273238, #1e2529

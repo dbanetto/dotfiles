@@ -1,12 +1,6 @@
 [[ "$TERM" == "xterm" ]] && export TERM=xterm-256color
 
-export PATH="$PATH:$HOME/.local/bin"
-
-if type nvim >/dev/null 2>&1; then
-  export EDITOR='nvim'
-else
-  export EDITOR='vim'
-fi
+export EDITOR='vim'
 
 # ssh connections
 # if [[ -n $SSH_CONNECTION ]]; then ; fi
