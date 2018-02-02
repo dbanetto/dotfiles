@@ -76,4 +76,7 @@ if [[ $(uname) == "Linux" ]] ; then
   link Xresources.d ~/.config/Xresouces.d
 fi
 
+# alacritty
+link alacritty.yml ~/.config/alacritty/alacritty.yml
+
 # vim: ft=sh:ts=2:sw=2:et
