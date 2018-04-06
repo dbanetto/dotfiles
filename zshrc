@@ -18,7 +18,6 @@ if ! zgen saved; then
 
   zgen prezto history-substring-search
   zgen prezto utility
-  zgen prezto zsh-notify
 
   zgen save
 fi
@@ -26,10 +25,6 @@ fi
 ## prezto
 # prompt
 prompt pure
-
-# zsh-notify
-zstyle ':notify:*' error-title 'Err'
-zstyle ':notify:*' success-title 'Ok'
 
 ## aliases
 alias grep="grep --color=auto --exclude-dir=.cvs --exclude-dir=.git --exclude-dir=.hg --exclude-dir=.svn"
