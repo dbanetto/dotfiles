@@ -51,32 +51,15 @@ git config --global core.excludesfile ~/.config/gitignore
 mkdir -p ~/.config/mpv
 link mpv.conf ~/.config/mpv/mpv.conf
 
-## tmux
-link tmux.conf ~/.tmux.conf
-mkdir -p ~/.tmux
-
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-
-# tmx script
-mkdir -p ~/.local/bin
-wget https://gist.githubusercontent.com/zyphrus/54878fa2b2509835cac7/raw/7169c1345d5f7e13d0dd1b7be0495d289abbe6bd/tmx -O ~/.local/bin/tmx
-chmod +x ~/.local/bin/tmx
-
 # OS specific
-if [[ $(uname) == "Darwin" ]] ; then
-  link osx.conf ~/.tmux/osx.conf
-
-  # rbenv
-  git clone https://github.com/rbenv/rbenv.git ~/.rbenv
-fi
+#if [[ $(uname) == "Darwin" ]] ; then
+#
+#fi
 
 if [[ $(uname) == "Linux" ]] ; then
   # Xresources
   link Xresources ~/.Xresources
   link Xresources.d ~/.config/Xresouces.d
 fi
-
-# alacritty
-link alacritty.yml ~/.config/alacritty/alacritty.yml
 
 # vim: ft=sh:ts=2:sw=2:et
