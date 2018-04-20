@@ -1,14 +1,3 @@
-[[ "$TERM" == "xterm" ]] && export TERM=xterm-256color
-
-export EDITOR='vim'
-
-# ssh connections
-# if [[ -n $SSH_CONNECTION ]]; then ; fi
-
-if [ "$COLORTERM" = "gnome-terminal" ] ; then
-  source /etc/profile.d/vte.sh
-fi
-
 zstyle ':prezto:*:*' color 'yes'
 
 ## zgen
