@@ -48,10 +48,16 @@
 	default = simple
 [github]
 	user = zyphrus
+[url "ssh://git@gitlab.com/"]
+    insteadOf = https://gitlab.com/
+    insteadOf = http://gitlab.com/
+    insteadOf = git://gitlab.com/
 [url "ssh://git@github.com/"]
+    insteadOf = https://github.com/
     insteadOf = http://github.com/
     insteadOf = git://github.com/
 [url "ssh://git@bitbucket.org/"]
+    insteadOf = https://bitbucket.org/
     insteadOf = http://bitbucket.org/
     insteadOf = git://bitbucket.org/
 [commit]
