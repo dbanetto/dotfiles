@@ -11,9 +11,13 @@ if ! zgen saved; then
   zgen save
 fi
 
-## prezto
-# prompt
-prompt pure
+# conditionally run with starship
+if command -v starship > /dev/null 2>&1 ; then
+  eval "$(starship init zsh)"
+else
+  prompt pure
+fi
+
 
 ## aliases
 alias grep="grep --color=auto --exclude-dir=.cvs --exclude-dir=.git --exclude-dir=.hg --exclude-dir=.svn"
