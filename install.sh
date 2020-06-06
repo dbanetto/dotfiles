@@ -51,15 +51,19 @@ git config --global core.excludesfile ~/.config/gitignore
 mkdir -p ~/.config/mpv
 link mpv.conf ~/.config/mpv/mpv.conf
 
-# OS specific
-#if [[ $(uname) == "Darwin" ]] ; then
-#
-#fi
+## alacritty
+mkdir -p ~/.config/alacritty
+link alacritty.yml ~/.config/alacritty/alacritty.yml
 
-if [[ $(uname) == "Linux" ]] ; then
-  # Xresources
-  link Xresources ~/.Xresources
-  link Xresources.d ~/.config/Xresouces.d
-fi
+# OS specific
+case "$(uname)" in
+  Darwin)
+    ;;
+  Linux)
+    # Xresources
+    link Xresources ~/.Xresources
+    link Xresources.d ~/.config/Xresouces.d
+    ;;
+esac
 
 # vim: ft=sh:ts=2:sw=2:et
