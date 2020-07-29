@@ -64,3 +64,5 @@
 	verbose = 1
 [diff]
 	compactionheuristic = 1
+[init]
+	defaultBranch = main
