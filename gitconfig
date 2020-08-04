@@ -47,7 +47,7 @@
 [push]
 	default = simple
 [github]
-	user = zyphrus
+	user = sysvii
 [url "ssh://git@gitlab.com/"]
     insteadOf = https://gitlab.com/
     insteadOf = http://gitlab.com/
