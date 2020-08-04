@@ -66,3 +66,5 @@
 	compactionheuristic = 1
 [init]
 	defaultBranch = main
+[pull]
+	ff = only
