@@ -1,10 +1,17 @@
 zstyle ':prezto:*:*' color 'yes'
 
+if [ -n  ${LS_COLORS} ] ; then
+  zstyle ':completion:*' list-colors 'exfxcxdxbxegedabagacad'
+else
+  zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+fi
+
 ## zgen
 source $HOME/.zgen/zgen.zsh
 if ! zgen saved; then
   zgen prezto
 
+  zgen prezto completion
   zgen prezto history-substring-search
   zgen prezto utility
 
