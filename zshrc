@@ -25,6 +25,9 @@ else
   prompt pure
 fi
 
+# entering a command with a leadning space ("<SPACE>ls)
+# will not save it to hsitory
+setopt histignorespace
 
 ## aliases
 alias grep="grep --color=auto --exclude-dir=.cvs --exclude-dir=.git --exclude-dir=.hg --exclude-dir=.svn"
@@ -48,9 +51,5 @@ alias gds="git diff --staged"
 alias gr="git reset"
 alias grh="git reset --hard"
 alias glrm="git pull --rebase origin master"
-
-# bundle alias
-alias b="bundle"
-alias be="bundle exec"
 
 # vim: set ts=2 sw=2 expandtab:
