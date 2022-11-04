@@ -46,6 +46,7 @@
 	stat = status -sb
 [push]
 	default = simple
+	autoSetupRemote = true
 [github]
 	user = sysvii
 [url "ssh://git@gitlab.com/"]

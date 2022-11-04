@@ -25,6 +25,10 @@ else
   prompt pure
 fi
 
+git_default_branch() {
+  (git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@') 2>/dev/null
+}
+
 # entering a command with a leadning space ("<SPACE>ls)
 # will not save it to hsitory
 setopt histignorespace
@@ -50,6 +54,6 @@ alias gd="git diff"
 alias gds="git diff --staged"
 alias gr="git reset"
 alias grh="git reset --hard"
-alias glrm="git pull --rebase origin master"
+alias glrm="git pull --rebase origin $(git_default_branch)"
 
 # vim: set ts=2 sw=2 expandtab:
