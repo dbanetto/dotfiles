@@ -44,6 +44,8 @@
 	# change last commit message
 	recommit = commit --amend
 	stat = status -sb
+	root = rev-parse --show-toplevel
+	prom = pull --rebase origin master
 [push]
 	default = simple
 	autoSetupRemote = true
