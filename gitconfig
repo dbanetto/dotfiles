@@ -8,25 +8,24 @@
 [log]
 	abbrevCommit = yes
 	abbrev = 8
-[color]
-	ui = auto
-	branch = auto
-	diff = auto
-	status = auto
-[color "branch"]
-	current = yellow reverse
-	local = yellow
-	remote = green
-[color "diff"]
-	meta = yellow bold
-	frag = magenta bold
-	old = red
-	new = green
-[color "status"]
-	added = yellow
-	changed = green
-	untracked = cyan
- [alias]
+[checkout]
+	workers = 32
+[rebase]
+	autoStash = true
+[push]
+	default = simple
+	autoSetupRemote = true
+[github]
+	user = dbanetto
+[commit]
+	verbose = 1
+[diff]
+	compactionheuristic = 1
+[init]
+	defaultBranch = main
+[pull]
+	ff = only
+[alias]
 	setup = ! "git init; git add .; git commit"
 	# shows list of files that have a merge conflict
 	conflicts = diff --name-only --diff-filter=U
@@ -46,28 +45,21 @@
 	stat = status -sb
 	root = rev-parse --show-toplevel
 	prom = pull --rebase origin master
-[push]
-	default = simple
-	autoSetupRemote = true
-[github]
-	user = sysvii
-[url "ssh://git@gitlab.com/"]
-    insteadOf = https://gitlab.com/
-    insteadOf = http://gitlab.com/
-    insteadOf = git://gitlab.com/
-[url "ssh://git@github.com/"]
-    insteadOf = https://github.com/
-    insteadOf = http://github.com/
-    insteadOf = git://github.com/
-[url "ssh://git@bitbucket.org/"]
-    insteadOf = https://bitbucket.org/
-    insteadOf = http://bitbucket.org/
-    insteadOf = git://bitbucket.org/
-[commit]
-	verbose = 1
-[diff]
-	compactionheuristic = 1
-[init]
-	defaultBranch = main
-[pull]
-	ff = only
+[color]
+	ui = auto
+	branch = auto
+	diff = auto
+	status = auto
+[color "branch"]
+	current = yellow reverse
+	local = yellow
+	remote = green
+[color "diff"]
+	meta = yellow bold
+	frag = magenta bold
+	old = red
+	new = green
+[color "status"]
+	added = yellow
+	changed = green
+	untracked = cyan
