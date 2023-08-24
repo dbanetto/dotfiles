@@ -8,3 +8,7 @@ tags.temp
 .tern-port
 *.iml
 .idea/
+.ijwb/
+scratch/
+user.bazelrc
+*.tfstate
