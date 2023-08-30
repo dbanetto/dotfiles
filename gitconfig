@@ -46,6 +46,7 @@
 	stat = status -sb
 	root = rev-parse --show-toplevel
 	prom = pull --rebase origin master
+   prune-branches = "!git fetch && git branch --merged | egrep -v 'master|main|green'  | xargs git branch -d"
 [checkout]
 	workers = 32
 [url "ssh://git@github.com/"]

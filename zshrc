@@ -54,6 +54,6 @@ alias gd="git diff"
 alias gds="git diff --staged"
 alias gr="git reset"
 alias grh="git reset --hard"
-alias glrm="git pull --rebase origin $(git_default_branch)"
+alias glrm="git pull --rebase origin \$(git_default_branch)"
 
 # vim: set ts=2 sw=2 expandtab:
