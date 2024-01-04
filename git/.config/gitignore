@@ -11,4 +11,3 @@ tags.temp
 .ijwb/
 scratch/
 user.bazelrc
-*.tfstate

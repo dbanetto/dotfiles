@@ -46,7 +46,7 @@
 	stat = status -sb
 	root = rev-parse --show-toplevel
 	prom = pull --rebase origin master
-   prune-branches = "!git fetch && git branch --merged | egrep -v 'master|main|green'  | xargs git branch -d"
+    prune-branches = "!git fetch && git branch --merged | egrep -v 'master|main|green'  | xargs git branch -d"
 [checkout]
 	workers = 32
 [url "ssh://git@github.com/"]
@@ -73,3 +73,19 @@
 	autoSetupRemote = true
 [protocol]
 	version = 2
+
+# Canva-specifc changes
+[includeIf "gitdir:~/work/"]
+	path = .config/gitconfig-canva
+[maintenance]
+	repo = /Users/davidb/work/infrastructure
+[core]
+	excludesfile = /Users/davidb/.config/gitignore
+	fsmonitor = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[trace2]
+	eventTarget = af_unix:dgram:/tmp/olly-git-trace2.sock
