@@ -169,7 +169,7 @@ require("lazy").setup({
         'tflint',
         [ 'jsonnet_ls' ] = {
          formatting = {
-          StringStyle = "double",
+          -- StringStyle = "double",
          },
         },
       }
