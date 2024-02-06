@@ -1,5 +1,5 @@
 [user]
-	email = david@barnett.net.nz
+	email = davidb@rnett.nz
 	name = David Barnett
 [help]
 	autocorrect = 3
@@ -77,15 +77,8 @@
 # Canva-specifc changes
 [includeIf "gitdir:~/work/"]
 	path = .config/gitconfig-canva
-[maintenance]
-	repo = /Users/davidb/work/infrastructure
-[core]
-	excludesfile = /Users/davidb/.config/gitignore
-	fsmonitor = true
-[filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
-[trace2]
-	eventTarget = af_unix:dgram:/tmp/olly-git-trace2.sock
+# Per-computer config, namely
+#  * git config --file ~/.config/gitconfig core.excludesfile ~/.config/gitignore
+#  * git config --file ~/.config/gitconfig gpg.format ~/.ssh/{primary key}.pub
+[includeIf "gitdir:~/Code/"]
+	path = .config/gitconfig
