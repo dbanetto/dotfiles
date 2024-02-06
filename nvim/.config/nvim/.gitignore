@@ -1,0 +1,12 @@
+env.vim
+env.plug.vim
+env.after.vim
+rplugin.vim
+autoload/
+bundles/
+sessions/
+.undofile/
+.init.vim-rplugin~
+.netrwhist
+.DS_Store
+*.log
