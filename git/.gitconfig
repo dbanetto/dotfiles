@@ -45,8 +45,8 @@
 	recommit = commit --amend
 	stat = status -sb
 	root = rev-parse --show-toplevel
-	prom = pull --rebase origin master
     prune-branches = "!git fetch && git branch --merged | egrep -v 'master|main|green'  | xargs git branch -d"
+	recent = "! git branch --sort=-committerdate --format=\"%(committerdate:relative)%09%(refname:short)\" | head -10"
 [checkout]
 	workers = 32
 [url "ssh://git@github.com/"]
@@ -59,12 +59,13 @@
 	verbose = 1
 [diff]
 	compactionheuristic = 1
+    algorithm = "histogram"
+    noprefix = true
 [init]
 	defaultBranch = main
 [fetch]
     prune = true
 [pull]
-	ff = only
 	rebase = true
 [rebase]
 	autoStash = true
@@ -73,6 +74,8 @@
 	autoSetupRemote = true
 [protocol]
 	version = 2
+[rerere]
+    enabled = true
 
 # Canva-specifc changes
 [includeIf "gitdir:~/work/"]

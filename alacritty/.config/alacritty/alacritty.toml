@@ -23,10 +23,10 @@ background = "#1b182c"
 foreground = "#cbe3e7"
 
 [font]
-size = 12.0
+size = 13.0
 
 [font.normal]
-family = "Fira Mono"
+family = "FiraCode Nerd Font Mono"
 style = "Regular"
 
 [[keyboard.bindings]]
