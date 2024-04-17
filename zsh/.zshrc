@@ -56,4 +56,25 @@ alias gr="git reset"
 alias grh="git reset --hard"
 alias glrm="git pull --rebase origin \$(git_default_branch)"
 
+function ghr() {
+  # alias of git checkout $(select from git recent)
+  local recent
+
+  recent=($(git branch --sort=-committerdate --format='%(refname:short)' | head -9))
+
+  PS3='Select branch, or 0 to exit: '
+  select branch in "${recent[@]}"; do
+      if [[ $REPLY == "0" ]]; then
+          echo 'Bye!' >&2
+          break
+      elif [[ -z $branch ]]; then
+          echo 'Invalid choice, try again' >&2
+          break
+      else
+        git checkout "${branch}"
+        break
+      fi
+  done
+}
+
 # vim: set ts=2 sw=2 expandtab:
