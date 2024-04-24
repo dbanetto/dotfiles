@@ -1,3 +1,4 @@
+autoload -Uz compinit
 zstyle ':prezto:*:*' color 'yes'
 
 if [ -n  ${LS_COLORS} ] ; then
@@ -77,5 +78,12 @@ function ghr() {
       fi
   done
 }
+
+
+if command -v kubectl > /dev/null 2>&1 ; then
+  source <(kubectl completion zsh)
+  alias k='kubectl'
+  compdef __start_kubectl k
+fi
 
 # vim: set ts=2 sw=2 expandtab:
