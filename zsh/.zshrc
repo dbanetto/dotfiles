@@ -1,5 +1,8 @@
-autoload -Uz compinit
+autoload -Uz compinit && compinit
+
 zstyle ':prezto:*:*' color 'yes'
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.local/cache/zsh
 
 if [ -n  ${LS_COLORS} ] ; then
   zstyle ':completion:*' list-colors 'exfxcxdxbxegedabagacad'
@@ -85,5 +88,6 @@ if command -v kubectl > /dev/null 2>&1 ; then
   alias k='kubectl'
   compdef __start_kubectl k
 fi
+compdef _bazel bazelisk
 
 # vim: set ts=2 sw=2 expandtab:
