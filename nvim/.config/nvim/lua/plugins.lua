@@ -15,8 +15,9 @@ vim.opt.rtp:prepend(lazypath)
 --  }}}
 
 require("lazy").setup({
-  { "challenger-deep-theme/vim",
-    lazy = false, -- make sure we load this during startup if it is your main colorscheme
+  {
+    "challenger-deep-theme/vim",
+    lazy = false,    -- make sure we load this during startup if it is your main colorscheme
     priority = 1000, -- make sure to load this before all the other start plugins
     config = function()
       -- load the colorscheme here
@@ -27,22 +28,23 @@ require("lazy").setup({
   { "tpope/vim-surround" },
   { "tpope/vim-commentary" },
   { "nvim-tree/nvim-web-devicons", lazy = true },
-  { "goolord/alpha-nvim",
+  {
+    "goolord/alpha-nvim",
     config = function()
-      require('alpha').setup(require'alpha.themes.startify'.config)
+      require('alpha').setup(require 'alpha.themes.startify'.config)
     end
   },
-  { 
+  {
     -- barbar {{{
     'romgrk/barbar.nvim',
     opts = {
       -- Disable animations
       animation = false,
       -- Excludes buffers from the tabline
-      exclude_ft = {'netrw'},
-      exclude_name = {'package.json'},
+      exclude_ft = { 'netrw' },
+      exclude_name = { 'package.json' },
     },
-    config = function() 
+    config = function()
       local opts = { noremap = true, silent = true }
       -- Move to previous/next
       vim.keymap.set('n', '<A-,>', '<Cmd>BufferPrevious<CR>', opts)
@@ -86,16 +88,18 @@ require("lazy").setup({
     end
     -- }}}
   },
+  { "williamboman/mason.nvim",           opts = {} },
+  { "williamboman/mason-lspconfig.nvim", opts = {} },
   {
+    -- LSP {{{
     'neovim/nvim-lspconfig',
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
     },
-    config = function() 
-      -- LSP {{{
+    config = function()
       -- Mappings.
       -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-      local opts = { noremap=true, silent=true }
+      local opts = { noremap = true, silent = true }
       vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
       vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
       vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
@@ -125,7 +129,7 @@ require("lazy").setup({
 
         -- Mappings.
         -- See `:help vim.lsp.*` for documentation on any of the below functions
-        local bufopts = { noremap=true, silent=true, buffer=bufnr }
+        local bufopts = { noremap = true, silent = true, buffer = bufnr }
         vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
         vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
         vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
@@ -167,10 +171,31 @@ require("lazy").setup({
         },
         'tsserver',
         'tflint',
-        [ 'jsonnet_ls' ] = {
-         formatting = {
-          -- StringStyle = "double",
-         },
+        ['lua_ls'] = {
+          Lua = {
+            runtime = {
+              -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+              version = "LuaJIT",
+              path = vim.split(package.path, ";"),
+            },
+            diagnostics = {
+              -- Get the language server to recognize the `vim` global
+              globals = { "vim" },
+            },
+            workspace = {
+              -- Make the server aware of Neovim runtime files and plugins
+              library = { vim.env.VIMRUNTIME },
+              checkThirdParty = false,
+            },
+            telemetry = {
+              enable = false,
+            },
+          },
+        },
+        ['jsonnet_ls'] = {
+          formatting = {
+            -- StringStyle = "double",
+          },
         },
       }
 
@@ -188,14 +213,14 @@ require("lazy").setup({
           }
         end
       end
-    end 
+    end
     -- }}}
   },
   {
     -- rust-tools {{{
-    'simrat39/rust-tools.nvim', 
+    'simrat39/rust-tools.nvim',
     ft = "rust",
-    config = function() 
+    config = function()
       local rt = require("rust-tools")
       rt.setup({
         server = {
@@ -210,8 +235,8 @@ require("lazy").setup({
     end
     -- }}}
   },
-
   {
+    -- Telescope {{{
     'nvim-telescope/telescope.nvim',
     dependencies = {
       'nvim-lua/plenary.nvim',
@@ -226,26 +251,27 @@ require("lazy").setup({
         },
       },
     },
-    config = function() 
-      -- Telescope {{{
-        local builtin = require('telescope.builtin')
-        -- Add leader shortcuts
-        vim.keymap.set('n', '<leader><space>', builtin.resume, {})
-        vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
-        vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
-        vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
-        vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
-        vim.keymap.set('n', '<leader>fz', builtin.spell_suggest, {})
+    config = function()
+      local builtin = require('telescope.builtin')
+      -- Add leader shortcuts
+      vim.keymap.set('n', '<leader><space>', builtin.resume, {})
+      vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+      vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
+      vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
+      vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+      vim.keymap.set('n', '<leader>fz', builtin.spell_suggest, {})
+      vim.keymap.set('n', '<leader>fs', builtin.treesitter, {})
 
-        -- LSP
-        vim.keymap.set('n', '<leader>lr', builtin.lsp_references, {})
-        vim.keymap.set('n', '<leader>li', builtin.lsp_incoming_calls, {})
-        vim.keymap.set('n', '<leader>lo', builtin.lsp_outgoing_calls, {})
-        vim.keymap.set('n', '<leader>ls', builtin.lsp_document_symbols, {})
-        -- }}}
+      -- LSP
+      vim.keymap.set('n', '<leader>lr', builtin.lsp_references, {})
+      vim.keymap.set('n', '<leader>li', builtin.lsp_incoming_calls, {})
+      vim.keymap.set('n', '<leader>lo', builtin.lsp_outgoing_calls, {})
+      vim.keymap.set('n', '<leader>ls', builtin.lsp_document_symbols, {})
     end
+    -- }}}
   },
   {
+    -- nvim-cmp {{{
     "hrsh7th/nvim-cmp",
     -- load cmp on InsertEnter
     event = "InsertEnter",
@@ -257,52 +283,50 @@ require("lazy").setup({
       'saadparwaiz1/cmp_luasnip',
     },
     config = function()
-      -- nvim-cmp {{{
-        local cmp = require 'cmp'
-        cmp.setup {
-          snippet = {
-            -- REQUIRED - you must specify a snippet engine
-            expand = function(args)
-              require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-            end,
+      local cmp = require 'cmp'
+      cmp.setup {
+        snippet = {
+          -- REQUIRED - you must specify a snippet engine
+          expand = function(args)
+            require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+          end,
+        },
+        mapping = cmp.mapping.preset.insert({
+          ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+          ['<C-f>'] = cmp.mapping.scroll_docs(4),
+          ['<C-Space>'] = cmp.mapping.complete(),
+          ['<CR>'] = cmp.mapping.confirm {
+            behavior = cmp.ConfirmBehavior.Replace,
+            select = true,
           },
-          mapping = cmp.mapping.preset.insert({
-            ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-            ['<C-f>'] = cmp.mapping.scroll_docs(4),
-            ['<C-Space>'] = cmp.mapping.complete(),
-            ['<CR>'] = cmp.mapping.confirm {
-              behavior = cmp.ConfirmBehavior.Replace,
-              select = true,
-            },
-            ['<Tab>'] = cmp.mapping(function(fallback)
-              if cmp.visible() then
-                cmp.select_next_item()
-              else
-                fallback()
-              end
-            end, { 'i', 's' }),
-            ['<S-Tab>'] = cmp.mapping(function(fallback)
-              if cmp.visible() then
-                cmp.select_prev_item()
-              else
-                fallback()
-              end
-            end, { 'i', 's' }),
-          }),
-          sources = {
-            { name = 'nvim_lsp' },
-            { name = 'luasnip' },
-          },
-        }
-
-        -- }}}
-      end
+          ['<Tab>'] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+              cmp.select_next_item()
+            else
+              fallback()
+            end
+          end, { 'i', 's' }),
+          ['<S-Tab>'] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+              cmp.select_prev_item()
+            else
+              fallback()
+            end
+          end, { 'i', 's' }),
+        }),
+        sources = {
+          { name = 'nvim_lsp' },
+          { name = 'luasnip' },
+        },
+      }
+    end
+    -- }}}
   },
   {
     -- nvim-treesitter {{{
     'nvim-treesitter/nvim-treesitter',
     main = 'nvim-treesitter.configs',
-    build = ':TSUpdate', 
+    build = ':TSUpdate',
     opts = {
       -- A list of parser names, or "all" (the five listed parsers should always be installed)
       ensure_installed = {
@@ -320,43 +344,55 @@ require("lazy").setup({
         enable = true,
       },
       incremental_selection = {
-      enable = true,
-      keymaps = {
-        init_selection = "<C-space>",
-        node_incremental = "<C-space>",
-        scope_incremental = false,
-        node_decremental = "<bs>",
+        enable = true,
+        keymaps = {
+          init_selection = "<C-space>",
+          node_incremental = "<C-space>",
+          scope_incremental = false,
+          node_decremental = "<bs>",
         },
       },
       textobjects = {
+        select = {
+          enable = true,
+          keymaps = {
+            -- Built-in captures.
+            ["af"] = "@function.outer",
+            ["if"] = "@function.inner",
+            ["aa"] = "@parameter.outer",
+            ["ia"] = "@parameter.inner",
+            ["ac"] = "@class.outer",
+            ["ic"] = "@class.inner",
+          },
+        },
         move = {
-        enable = true,
-        goto_next_start = { ["]f"] = "@function.outer", ["]c"] = "@class.outer", ["]a"] = "@parameter.inner" },
-        goto_next_end = { ["]F"] = "@function.outer", ["]C"] = "@class.outer", ["]A"] = "@parameter.inner" },
-        goto_previous_start = { ["[f"] = "@function.outer", ["[c"] = "@class.outer", ["[a"] = "@parameter.inner" },
-        goto_previous_end = { ["[F"] = "@function.outer", ["[C"] = "@class.outer", ["[A"] = "@parameter.inner" },
+          enable = true,
+          goto_next_start = { ["]f"] = "@function.outer", ["]c"] = "@class.outer", ["]a"] = "@parameter.inner" },
+          goto_next_end = { ["]F"] = "@function.outer", ["]C"] = "@class.outer", ["]A"] = "@parameter.inner" },
+          goto_previous_start = { ["[f"] = "@function.outer", ["[c"] = "@class.outer", ["[a"] = "@parameter.inner" },
+          goto_previous_end = { ["[F"] = "@function.outer", ["[C"] = "@class.outer", ["[A"] = "@parameter.inner" },
+        },
       },
-  },
     }
     --- }}}
   },
   {
-    -- nvim-treesitter-textobjects
+    -- nvim-treesitter-textobjects {{{
     'nvim-treesitter/nvim-treesitter-textobjects',
     dependencies = {
       'nvim-treesitter/nvim-treesitter',
     },
-
+    --- }}}
   },
   {
     -- lualine {{{
-    'nvim-lualine/lualine.nvim', 
+    'nvim-lualine/lualine.nvim',
     opts = {
       options = {
         icons_enabled = true,
         theme = 'auto',
-        component_separators = { left = '|', right = '|'},
-        section_separators = { left = '', right = ''},
+        component_separators = { left = '|', right = '|' },
+        section_separators = { left = '', right = '' },
         disabled_filetypes = {
           statusline = {},
           winbar = {},
@@ -371,18 +407,18 @@ require("lazy").setup({
         }
       },
       sections = {
-        lualine_a = {'mode'},
-        lualine_b = {'branch', 'diagnostics'},
-        lualine_c = {'%f'},
-        lualine_x = {'encoding', 'fileformat', 'filetype'},
-        lualine_y = {'progress'},
-        lualine_z = {'location'}
+        lualine_a = { 'mode' },
+        lualine_b = { 'branch', 'diagnostics' },
+        lualine_c = { '%f' },
+        lualine_x = { 'encoding', 'fileformat', 'filetype' },
+        lualine_y = { 'progress' },
+        lualine_z = { 'location' }
       },
       inactive_sections = {
         lualine_a = {},
         lualine_b = {},
-        lualine_c = {'%F'},
-        lualine_x = {'location'},
+        lualine_c = { '%F' },
+        lualine_x = { 'location' },
         lualine_y = {},
         lualine_z = {}
       },
@@ -393,53 +429,53 @@ require("lazy").setup({
     }
     -- }}}
   },
-  { 
+  {
     -- gitsigns {{{
     'lewis6991/gitsigns.nvim',
     opts = {
-        on_attach = function(bufnr)
-          local gs = package.loaded.gitsigns
+      on_attach = function(bufnr)
+        local gs = package.loaded.gitsigns
 
-          local function map(mode, l, r, opts)
-            opts = opts or {}
-            opts.buffer = bufnr
-            vim.keymap.set(mode, l, r, opts)
-          end
-
-          -- Navigation
-          map('n', ']h', function()
-            if vim.wo.diff then return ']c' end
-            vim.schedule(function() gs.next_hunk() end)
-            return '<Ignore>'
-          end, {expr=true})
-
-          map('n', '[h', function()
-            if vim.wo.diff then return '[c' end
-            vim.schedule(function() gs.prev_hunk() end)
-            return '<Ignore>'
-          end, {expr=true})
-
-          -- Actions
-          map({'n', 'v'}, '<leader>hs', ':Gitsigns stage_hunk<CR>')
-          map({'n', 'v'}, '<leader>hr', ':Gitsigns reset_hunk<CR>')
-          map('n', '<leader>hS', gs.stage_buffer)
-          map('n', '<leader>hu', gs.undo_stage_hunk)
-          map('n', '<leader>hR', gs.reset_buffer)
-          map('n', '<leader>hp', gs.preview_hunk)
-          map('n', '<leader>hb', function() gs.blame_line{full=true} end)
-          map('n', '<leader>tb', gs.toggle_current_line_blame)
-          map('n', '<leader>hd', gs.diffthis)
-          map('n', '<leader>hD', function() gs.diffthis('~') end)
-          map('n', '<leader>td', gs.toggle_deleted)
-
-          -- Text object
-          map({'o', 'x'}, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
+        local function map(mode, l, r, opts)
+          opts = opts or {}
+          opts.buffer = bufnr
+          vim.keymap.set(mode, l, r, opts)
         end
-      }
-      -- }}}
+
+        -- Navigation
+        map('n', ']h', function()
+          if vim.wo.diff then return ']c' end
+          vim.schedule(function() gs.next_hunk() end)
+          return '<Ignore>'
+        end, { expr = true })
+
+        map('n', '[h', function()
+          if vim.wo.diff then return '[c' end
+          vim.schedule(function() gs.prev_hunk() end)
+          return '<Ignore>'
+        end, { expr = true })
+
+        -- Actions
+        map({ 'n', 'v' }, '<leader>hs', ':Gitsigns stage_hunk<CR>')
+        map({ 'n', 'v' }, '<leader>hr', ':Gitsigns reset_hunk<CR>')
+        map('n', '<leader>hS', gs.stage_buffer)
+        map('n', '<leader>hu', gs.undo_stage_hunk)
+        map('n', '<leader>hR', gs.reset_buffer)
+        map('n', '<leader>hp', gs.preview_hunk)
+        map('n', '<leader>hb', function() gs.blame_line { full = true } end)
+        map('n', '<leader>tb', gs.toggle_current_line_blame)
+        map('n', '<leader>hd', gs.diffthis)
+        map('n', '<leader>hD', function() gs.diffthis('~') end)
+        map('n', '<leader>td', gs.toggle_deleted)
+
+        -- Text object
+        map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
+      end
+    }
+    -- }}}
   },
-  -- gitsigns {{{
   {
+    -- gitsigns {{{
     "NeogitOrg/neogit",
     dependencies = {
       "nvim-lua/plenary.nvim",
@@ -447,8 +483,8 @@ require("lazy").setup({
       "nvim-telescope/telescope.nvim",
     },
     config = true
+    -- }}}
   },
-  -- }}}
 })
 
 

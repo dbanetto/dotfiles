@@ -50,8 +50,6 @@
 [checkout]
 	workers = 32
 [url "ssh://git@github.com/"]
-	insteadOf = https://github.com/
-	insteadOf = http://github.com/
 	insteadOf = git://github.com/
 [github]
 	user = dbanetto
@@ -83,5 +81,6 @@
 # Per-computer config, namely
 #  * git config --file ~/.config/gitconfig core.excludesfile ~/.config/gitignore
 #  * git config --file ~/.config/gitconfig gpg.format ~/.ssh/{primary key}.pub
+#  * Follow https://git-send-email.io for sr.ht
 [includeIf "gitdir:~/Code/"]
 	path = .config/gitconfig
