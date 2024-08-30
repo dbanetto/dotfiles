@@ -26,6 +26,7 @@ require("lazy").setup({
   },
   {
     "stevearc/oil.nvim",
+    lazy = false,
     opts = {
       delete_to_trash = true,
     },
@@ -491,7 +492,10 @@ require("lazy").setup({
       "sindrets/diffview.nvim",
       "nvim-telescope/telescope.nvim",
     },
-    config = true
+    config = true,
+    keys = {
+      { "<leader>gt", "<CMD>Neogit kind=auto<CR>", { desc = "Open NeoGit UI" } },
+    },
     -- }}}
   },
 })
