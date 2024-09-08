@@ -3,8 +3,6 @@
 	name = David Barnett
 [help]
 	autocorrect = 3
-[credential]
-	helper = cache --timeout=3600
 [log]
 	abbrevCommit = yes
 	abbrev = 8

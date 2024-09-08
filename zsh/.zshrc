@@ -60,6 +60,7 @@ alias gr="git reset"
 alias grh="git reset --hard"
 alias ghm="git checkout \$(git_default_branch)"
 alias glrm="git pull --rebase origin \$(git_default_branch)"
+alias gcd="cd \$(git rev-parse --show-toplevel)"
 
 function ghr() {
   # alias of git checkout $(select from git recent)
