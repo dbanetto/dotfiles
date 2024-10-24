@@ -47,11 +47,10 @@ alias gb="git branch"
 alias ga="git add"
 alias gf="git fetch"
 alias gp="git push"
+alias gp="git push --force-with-lease"
 alias gl="git pull"
-alias gt="git stash"
-alias gta="git stash apply"
-alias gtp="git stash pop"
-alias gts="git stash save"
+alias glr="git pull --rebase"
+alias glrm="git pull --rebase origin \$(git_default_branch)"
 alias gs="git status -sb"
 alias gsh="git status -sb ."
 alias gd="git diff"
@@ -59,8 +58,8 @@ alias gds="git diff --staged"
 alias gr="git reset"
 alias grh="git reset --hard"
 alias ghm="git checkout \$(git_default_branch)"
-alias glrm="git pull --rebase origin \$(git_default_branch)"
 alias gcd="cd \$(git rev-parse --show-toplevel)"
+alias gw="git worktree"
 
 function ghr() {
   # alias of git checkout $(select from git recent)
@@ -83,5 +82,28 @@ function ghr() {
   done
 }
 
+function gwcd() {
+  # List out git worktrees and change directory to them.
+  local recent
+
+  recent=()
+  while IFS= read -r line; do
+    recent+=( "$line" )
+  done < <( git worktree list )
+
+  PS3='Select branch, or 0 to exit: '
+  select branch in ${recent}; do
+      if [[ $REPLY == "0" ]]; then
+          echo 'Bye!' >&2
+          break
+      elif [[ -z $branch ]]; then
+          echo 'Invalid choice, try again' >&2
+          break
+      else
+        cd $(echo "${branch}" | cut -f1 -d' ')
+        break
+      fi
+  done
+}
 
 # vim: set ts=2 sw=2 expandtab:

@@ -179,7 +179,6 @@ require("lazy").setup({
             },
           }
         },
-        "tsserver",
         "tflint",
         ["lua_ls"] = {
           Lua = {
