@@ -72,6 +72,8 @@
 	version = 2
 [rerere]
     enabled = true
+[core]
+	excludesfile = /Users/davidb/.config/gitignore
 
 # Canva-specifc changes
 [includeIf "gitdir:~/work/"]
@@ -82,3 +84,16 @@
 #  * Follow https://git-send-email.io for sr.ht
 [includeIf "gitdir:~/Code/"]
 	path = .config/gitconfig
+[maintenance]
+	repo = /Users/davidb/work/account-service-customizations
+	repo = /Users/davidb/work/k8s
+	repo = /Users/davidb/work/Olly
+	repo = /Users/davidb/work/platy
+	repo = /Users/davidb/work/account-service-aft
+	repo = /Users/davidb/work/docs
+	repo = /Users/davidb/work/scratch
+	repo = /Users/davidb/work/infra-tools
+	repo = /Users/davidb/work/infrastructure
+	repo = /Users/davidb/work/container-build
+[trace2]
+	eventTarget = af_unix:dgram:/tmp/olly-git-trace2.sock
