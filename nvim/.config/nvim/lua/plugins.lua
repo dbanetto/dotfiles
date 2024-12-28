@@ -499,5 +499,23 @@ require("lazy").setup({
   },
 })
 
+vim.filetype.add({
+  extension = {
+    perm = "perm",
+  }
+})
+
+vim.treesitter.language.register('perm', 'perm')
+
+local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+
+parser_config.perm = {
+  install_info = {
+    url = 'https://github.com/theoriginalstove/tree-sitter-perm', -- local path or git repo
+    files = { "src/parser.c" },                                   -- note that some parsers also require src/scanner.c or src/scanner.cc
+    branch = "main",
+  },
+}
+
 
 -- vim: set sw=2 ts=2 ft=lua expandtab fdm=marker fmr={{{,}}} fdl=0 fdls=-1:
