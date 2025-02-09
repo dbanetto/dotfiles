@@ -11,15 +11,17 @@ else
 fi
 
 ## zgen
-source $HOME/.zgen/zgen.zsh
-if ! zgen saved; then
-  zgen prezto
+if [ -f "${HOME}/.zgen/zgen.zsh" ]; then
+	source "${HOME}/.zgen/zgen.zsh"
+	if ! zgen saved; then
+	  zgen prezto
 
-  zgen prezto completion
-  zgen prezto history-substring-search
-  zgen prezto utility
+	  zgen prezto completion
+	  zgen prezto history-substring-search
+	  zgen prezto utility
 
-  zgen save
+	  zgen save
+	fi
 fi
 
 # conditionally run with starship

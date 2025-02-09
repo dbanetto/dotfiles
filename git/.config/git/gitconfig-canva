@@ -1,0 +1,10 @@
+[user]
+    name = David Barnett
+    email = davidb@canva.com
+[trace2]
+	eventtarget = af_unix:dgram:/tmp/olly-git-trace2.sock
+[maintenance]
+	repo = /Users/davidb/work/k8s
+	repo = /Users/davidb/work/infrastructure
+	repo = /Users/davidb/work/dbanetto-scratch
+	repo = /Users/davidb/work/scratch

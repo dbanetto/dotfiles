@@ -1,6 +1,7 @@
 [user]
 	email = davidb@rnett.nz
 	name = David Barnett
+	signingkey = '~/.ssh/signing.pub'
 [help]
 	autocorrect = 3
 [log]
@@ -74,13 +75,20 @@
     enabled = true
 [core]
 	excludesfile = /Users/davidb/.config/gitignore
-
+[gpg]
+    format = ssh
 # Canva-specifc changes
 [includeIf "gitdir:~/work/"]
-	path = .config/gitconfig-canva
+	path = .config/git/gitconfig-canva
 # Per-computer config, namely
 #  * git config --file ~/.config/gitconfig core.excludesfile ~/.config/gitignore
 #  * git config --file ~/.config/gitconfig gpg.format ~/.ssh/{primary key}.pub
 #  * Follow https://git-send-email.io for sr.ht
 [includeIf "gitdir:~/Code/"]
 	path = .config/gitconfig
+[maintenance]
+	repo = /Users/davidb/work/scratch
+	repo = /Users/davidb/work/infrastructure
+	repo = /Users/davidb/work/k8s
+[trace2]
+	eventtarget = af_unix:dgram:/tmp/olly-git-trace2.sock
