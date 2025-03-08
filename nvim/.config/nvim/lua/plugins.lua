@@ -1,17 +1,19 @@
 -- Lazy.nvim Bootstrap {{{
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  })
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+  local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+  if vim.v.shell_error ~= 0 then
+    vim.api.nvim_echo({
+      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+      { out,                            "WarningMsg" },
+      { "\nPress any key to exit..." },
+    }, true, {})
+    vim.fn.getchar()
+    os.exit(1)
+  end
 end
 vim.opt.rtp:prepend(lazypath)
-
 --  }}}
 
 require("lazy").setup({
@@ -99,7 +101,7 @@ require("lazy").setup({
     -- }}}
   },
   { "williamboman/mason.nvim",           opts = {} },
-  { "williamboman/mason-lspconfig.nvim", opts = {} },
+  { "williamboman/mason-lspconfig.nvim", opts = { automatic_installation = true } },
   {
     -- LSP {{{
     "neovim/nvim-lspconfig",
@@ -117,10 +119,9 @@ require("lazy").setup({
 
       -- Use an on_attach function to only map the following keys
       -- after the language server attaches to the current buffer
-      local on_attach = function(client, bufnr)
+      local on_attach = function(_, bufnr)
         -- Enable completion triggered by <c-x><c-o>
         vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-
         -- Format on save
         vim.api.nvim_create_autocmd("BufWritePre", {
           buffer = bufnr,
@@ -129,14 +130,6 @@ require("lazy").setup({
           end
         })
 
-        -- Disablied as it causes a pile up of errors
-        -- vim.api.nvim_create_autocmd("BufWritePre", {
-        --   pattern = "*.go",
-        --   callback = function()
-        --     vim.lsp.buf.code_action({ context = { only = { "source.organizeImports" } }, apply = true })
-        --   end
-        -- })
-
         -- Mappings.
         -- See `:help vim.lsp.*` for documentation on any of the below functions
         local bufopts = { noremap = true, silent = true, buffer = bufnr }
@@ -144,7 +137,7 @@ require("lazy").setup({
         vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
         vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
         vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
-        -- vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, bufopts)
+        vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, bufopts)
         vim.keymap.set("n", "<space>lwa", vim.lsp.buf.add_workspace_folder, bufopts)
         vim.keymap.set("n", "<space>lwr", vim.lsp.buf.remove_workspace_folder, bufopts)
         vim.keymap.set("n", "<space>lwl", function()
@@ -154,17 +147,17 @@ require("lazy").setup({
         vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, bufopts)
         vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, bufopts)
         vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
-        vim.keymap.set("n", "<space>f", function() vim.lsp.buf.format { async = true } end, bufopts)
+        vim.keymap.set("n", "<space>gf", function() vim.lsp.buf.format { async = true } end, bufopts)
       end
 
       -- LSP settings
-      local nvim_lsp = require "lspconfig"
+      local nvim_lsp = require("lspconfig")
       -- Set up lspconfig.
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
       -- Enable the following language servers
       local servers = {
-        "pyright",
+        "pylyzer",
         ["gopls"] = {
           gopls = {
             env = {
@@ -179,7 +172,6 @@ require("lazy").setup({
             },
           }
         },
-        "tflint",
         ["lua_ls"] = {
           Lua = {
             runtime = {
@@ -203,11 +195,18 @@ require("lazy").setup({
         },
         ["jsonnet_ls"] = {
           formatting = {
-            StringStyle = "double",
+            -- StringStyle = "double",
           },
         },
+        "bashls",
+        "buf_ls",
+        "helm_ls",
+        "terraformls",
+        "tflint",
+        "zls",
       }
 
+      -- Generic LSP setup
       for k, lsp in pairs(servers) do
         if type(k) == "string" then
           nvim_lsp[k].setup {
@@ -222,6 +221,13 @@ require("lazy").setup({
           }
         end
       end
+
+      -- Custom command
+      nvim_lsp["starpls"].setup {
+        cmd = { 'starpls', 'server', '--experimental_infer_ctx_attributes', '--experimental_enable_label_completions' },
+        on_attach = on_attach,
+        capabilities = capabilities,
+      }
     end
     -- }}}
   },
@@ -268,7 +274,7 @@ require("lazy").setup({
       vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
       vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
       vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})
-      vim.keymap.set("n", "<leader>fz", builtin.spell_suggest, {})
+      vim.keymap.set("n", "zf", builtin.spell_suggest, {})
       vim.keymap.set("n", "<leader>fs", builtin.treesitter, {})
 
       -- LSP
@@ -292,7 +298,7 @@ require("lazy").setup({
       "saadparwaiz1/cmp_luasnip",
     },
     config = function()
-      local cmp = require "cmp"
+      local cmp = require("cmp")
       cmp.setup {
         snippet = {
           -- REQUIRED - you must specify a snippet engine
@@ -497,6 +503,13 @@ require("lazy").setup({
     },
     -- }}}
   },
+  {
+    -- Base64 {{{
+    "ovk/endec.nvim",
+    event = "VeryLazy",
+    opts = {}
+    -- }}}
+  }
 })
 
 vim.filetype.add({
@@ -516,6 +529,5 @@ parser_config.perm = {
     branch = "main",
   },
 }
-
 
 -- vim: set sw=2 ts=2 ft=lua expandtab fdm=marker fmr={{{,}}} fdl=0 fdls=-1:
