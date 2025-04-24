@@ -9,7 +9,6 @@ vim.opt.cursorline = true
 vim.opt.termguicolors = true
 vim.opt.showmode = false
 
-
 -- Spelling
 vim.opt.spelllang = 'en'
 
@@ -114,6 +113,9 @@ vim.opt.wildignore = {
 
 -- show result of command as you go
 vim.opt.inccommand = 'nosplit'
+
+-- Ensure sign column is present
+vim.opt.signcolumn = 'yes'
 
 vim.g.editorconfig = true
 
@@ -223,9 +225,3 @@ vim.api.nvim_create_autocmd("WinEnter", {
 })
 
 -- }}}
-
--- Search {{{
-
-
--- }}}
--- vim: set sw=2 ts=2 ft=lua expandtab fdm=marker fmr={{{,}}} fdl=0 fdls=-1:
