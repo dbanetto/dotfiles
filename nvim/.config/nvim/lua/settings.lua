@@ -81,34 +81,34 @@ vim.opt.smartcase = true
 
 -- Ignore
 vim.opt.wildignore = {
-  "*.class",
-  "*.gem",
-  "*.o",
-  "*.obj",
-  "*.out",
-  "*.rar",
-  "*.rbc",
-  "*.rbo",
-  "*.swp",
-  "*.tar.bz2",
-  "*.tar.gz",
-  "*.tar.xz",
-  "*.zip",
-  "*/.bundle/*",
-  "*/.kitchen/*",
-  "*/.sass-cache/*",
-  "*/.vagrant/*",
-  "*/node_modules/*",
-  "*/tmp/cache/assets/*/sass/*",
-  "*/tmp/cache/assets/*/sprockets/*",
-  "*/tmp/librarian/*",
-  "*/vendor/cache/*",
-  "*/vendor/cookbooks/*",
-  "*/vendor/gems/*",
-  "*~",
-  "._*",
-  ".git",
-  ".svn",
+    "*.class",
+    "*.gem",
+    "*.o",
+    "*.obj",
+    "*.out",
+    "*.rar",
+    "*.rbc",
+    "*.rbo",
+    "*.swp",
+    "*.tar.bz2",
+    "*.tar.gz",
+    "*.tar.xz",
+    "*.zip",
+    "*/.bundle/*",
+    "*/.kitchen/*",
+    "*/.sass-cache/*",
+    "*/.vagrant/*",
+    "*/node_modules/*",
+    "*/tmp/cache/assets/*/sass/*",
+    "*/tmp/cache/assets/*/sprockets/*",
+    "*/tmp/librarian/*",
+    "*/vendor/cache/*",
+    "*/vendor/cookbooks/*",
+    "*/vendor/gems/*",
+    "*~",
+    "._*",
+    ".git",
+    ".svn",
 }
 
 -- show result of command as you go
@@ -164,6 +164,11 @@ vim.keymap.set('n', '#', '#zz', { silent = true })
 vim.keymap.set('n', 'g*', 'g*zz', { silent = true })
 vim.keymap.set('n', 'g#', 'g#zz', { silent = true })
 
+-- nvim 0.11+ diagnostics
+vim.keymap.set('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>')
+vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>')
+vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>')
+
 -- clear hlsearch
 vim.keymap.set('n', '<leader>/', ':let @/=""<CR>')
 
@@ -174,18 +179,18 @@ vim.keymap.set('n', '<leader>w', ':w<CR>')
 vim.g.netrw_fastbrowse = 0
 
 local filetype_quit    = {
-  ['qf'] = true,
-  ['ql'] = true,
-  ['netrw'] = true,
+    ['qf'] = true,
+    ['ql'] = true,
+    ['netrw'] = true,
 }
 
 vim.keymap.set('n', 'q', function()
-  local buf = vim.api.nvim_win_get_buf(0)
-  if vim.bo[buf].readonly or filetype_quit[vim.bo[buf].filetype] then
-    return ':close<CR>'
-  else
-    return 'q'
-  end
+    local buf = vim.api.nvim_win_get_buf(0)
+    if vim.bo[buf].readonly or filetype_quit[vim.bo[buf].filetype] then
+        return ':close<CR>'
+    else
+        return 'q'
+    end
 end, { expr = true })
 
 
@@ -196,32 +201,32 @@ vim.keymap.set('n', 'Y', 'y$')
 -- autocmd {{{
 
 vim.api.nvim_create_autocmd("FocusLost", {
-  pattern = "*",
-  callback = function(args)
-    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<ESC>', true, false, true), 'n', false)
-  end
+    pattern = "*",
+    callback = function(args)
+        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<ESC>', true, false, true), 'n', false)
+    end
 })
 
 vim.api.nvim_create_autocmd("TermOpen", {
-  pattern = "*",
-  callback = function(args)
-    vim.opt_local.number = false
-    vim.opt_local.relativenumber = false
-  end
+    pattern = "*",
+    callback = function(args)
+        vim.opt_local.number = false
+        vim.opt_local.relativenumber = false
+    end
 })
 
 vim.api.nvim_create_autocmd("BufWinEnter", {
-  pattern = "term://*",
-  callback = function(args)
-    vim.cmd('startinsert')
-  end
+    pattern = "term://*",
+    callback = function(args)
+        vim.cmd('startinsert')
+    end
 })
 
 vim.api.nvim_create_autocmd("WinEnter", {
-  pattern = "term://*",
-  callback = function(args)
-    vim.cmd('startinsert')
-  end
+    pattern = "term://*",
+    callback = function(args)
+        vim.cmd('startinsert')
+    end
 })
 
 -- }}}
