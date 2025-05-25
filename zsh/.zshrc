@@ -106,4 +106,11 @@ function gwcd() {
   done
 }
 
+# Adding semantic escape sequences (OSC 133)
+# for nvim terminal support of moving between commands
+function _starship_precmd_marker(){
+  printf "\033]133;A\007"
+}
+precmd_functions+=(_starship_precmd_marker)
+
 # vim: set ts=2 sw=2 expandtab:

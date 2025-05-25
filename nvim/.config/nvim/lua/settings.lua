@@ -209,24 +209,41 @@ vim.api.nvim_create_autocmd("FocusLost", {
 
 vim.api.nvim_create_autocmd("TermOpen", {
     pattern = "*",
-    callback = function(args)
+    callback = function(_)
         vim.opt_local.number = false
         vim.opt_local.relativenumber = false
+        vim.opt_local.signcolumn = "auto"
+        vim.opt_local.foldcolumn = "auto"
     end
 })
 
 vim.api.nvim_create_autocmd("BufWinEnter", {
     pattern = "term://*",
-    callback = function(args)
+    callback = function(_)
         vim.cmd('startinsert')
     end
 })
 
 vim.api.nvim_create_autocmd("WinEnter", {
     pattern = "term://*",
-    callback = function(args)
+    callback = function(_)
         vim.cmd('startinsert')
     end
+})
+
+-- Annotates each terminal command
+-- Requires semantic escape sequences (OSC 133) to mark where each prompt starts and ends.
+local ns = vim.api.nvim_create_namespace('my.terminal.prompt')
+vim.api.nvim_create_autocmd('TermRequest', {
+    callback = function(args)
+        if string.match(args.data.sequence, '^\027]133;A') then
+            local lnum = args.data.cursor[1]
+            vim.api.nvim_buf_set_extmark(args.buf, ns, lnum - 1, 0, {
+                sign_text = '▶',
+                sign_hl_group = 'SpecialChar',
+            })
+        end
+    end,
 })
 
 -- }}}
