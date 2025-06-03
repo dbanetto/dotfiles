@@ -12,11 +12,4 @@ return {
     },
     { "tpope/vim-surround" },
     { "tpope/vim-commentary" },
-    { "nvim-tree/nvim-web-devicons", lazy = true },
-    {
-        "goolord/alpha-nvim",
-        config = function()
-            require("alpha").setup(require "alpha.themes.startify".config)
-        end
-    },
 }

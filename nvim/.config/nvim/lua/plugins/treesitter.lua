@@ -59,4 +59,9 @@ return {
         },
         --- }}}
     },
+    {
+        "cshuaimin/ssr.nvim",
+        keys = { { "<leader>sr", function() require("ssr").open() end, mode = { "n", "x", "v" }, desc = "Symbols Outline" } },
+        lazy = true
+    },
 }

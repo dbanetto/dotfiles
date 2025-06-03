@@ -37,9 +37,31 @@ return {
                 lualine_y = {},
                 lualine_z = {}
             },
-            tabline = {},
-            winbar = {},
-            inactive_winbar = {},
+            tabline = {
+                lualine_a = { 'buffers' },
+                lualine_b = {},
+                lualine_c = {},
+                lualine_x = {},
+                lualine_y = {},
+                lualine_z = { 'oil', 'aerial', 'tabs' }
+            },
+            -- Per split
+            winbar = {
+                lualine_a = { { "navic", color_correction = "dynamic" } },
+                lualine_b = {},
+                lualine_c = {},
+                lualine_x = {},
+                lualine_y = {},
+                lualine_z = {}
+            },
+            inactive_winbar = {
+                lualine_a = {},
+                lualine_b = {},
+                lualine_c = {},
+                lualine_x = {},
+                lualine_y = {},
+                lualine_z = {}
+            },
             extensions = {}
         },
         -- }}}
@@ -50,36 +72,36 @@ return {
             require("alpha").setup(require "alpha.themes.startify".config)
         end
     },
-    {
-        -- barbar {{{
-        'romgrk/barbar.nvim',
-        opts = {
-            -- Disable animations
-            animation = false,
-            -- Excludes buffers from the tabline
-            exclude_ft = { 'netrw' },
-            exclude_name = { 'package.json' },
-        },
-        config = function()
-            local opts = { noremap = true, silent = true }
-            -- Move to previous/next
-            vim.keymap.set('n', '[b', '<Cmd>BufferPrevious<CR>', opts)
-            vim.keymap.set('n', ']b', '<Cmd>BufferNext<CR>', opts)
+    -- {
+    --     -- barbar {{{
+    --     'romgrk/barbar.nvim',
+    --     opts = {
+    --         -- Disable animations
+    --         animation = false,
+    --         -- Excludes buffers from the tabline
+    --         exclude_ft = { 'netrw' },
+    --         exclude_name = { 'package.json' },
+    --     },
+    --     config = function()
+    --         local opts = { noremap = true, silent = true }
+    --         -- Move to previous/next
+    --         vim.keymap.set('n', '[b', '<Cmd>BufferPrevious<CR>', opts)
+    --         vim.keymap.set('n', ']b', '<Cmd>BufferNext<CR>', opts)
 
-            -- Wipeout buffer
-            --                 :BufferWipeout
-            -- Close commands
-            --                 :BufferCloseAllButCurrent
-            --                 :BufferCloseAllButPinned
-            --                 :BufferCloseAllButCurrentOrPinned
-            --                 :BufferCloseBuffersLeft
-            --                 :BufferCloseBuffersRight
-            -- Magic buffer-picking mode
-            vim.keymap.set('n', '<Space>bd', '<Cmd>BufferWipeout<CR>', opts)
-            vim.keymap.set('n', '<C-p>', '<Cmd>BufferPick<CR>', opts)
-        end
-        -- }}}
-    },
+    --         -- Wipeout buffer
+    --         --                 :BufferWipeout
+    --         -- Close commands
+    --         --                 :BufferCloseAllButCurrent
+    --         --                 :BufferCloseAllButPinned
+    --         --                 :BufferCloseAllButCurrentOrPinned
+    --         --                 :BufferCloseBuffersLeft
+    --         --                 :BufferCloseBuffersRight
+    --         -- Magic buffer-picking mode
+    --         vim.keymap.set('n', '<Space>bd', '<Cmd>BufferWipeout<CR>', opts)
+    --         vim.keymap.set('n', '<C-p>', '<Cmd>BufferPick<CR>', opts)
+    --     end
+    --     -- }}}
+    -- },
     {
         "samjwill/nvim-unception",
         init = function()
