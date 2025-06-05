@@ -19,6 +19,7 @@ return {
             highlight = {
                 enable = true,
             },
+            indent = { enable = true },
             incremental_selection = {
                 enable = true,
                 keymaps = {
@@ -58,5 +59,22 @@ return {
             "nvim-treesitter/nvim-treesitter",
         },
         --- }}}
+    },
+    {
+        "nvim-treesitter/nvim-treesitter-context",
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter",
+        },
+        opts = {
+            enable = true,
+            mode = "topline",
+            separator = '~',
+            line_numbers = true
+        }
+    },
+    {
+        "cshuaimin/ssr.nvim",
+        keys = { { "<leader>sr", function() require("ssr").open() end, mode = { "n", "x", "v" }, desc = "Symbols Outline" } },
+        lazy = true
     },
 }

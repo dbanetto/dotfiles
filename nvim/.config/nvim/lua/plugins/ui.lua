@@ -8,18 +8,7 @@ return {
                 theme = "auto",
                 component_separators = { left = "|", right = "|" },
                 section_separators = { left = "", right = "" },
-                disabled_filetypes = {
-                    statusline = {},
-                    winbar = {},
-                },
-                ignore_focus = {},
                 always_divide_middle = true,
-                globalstatus = false,
-                refresh = {
-                    statusline = 1000,
-                    tabline = 1000,
-                    winbar = 1000,
-                }
             },
             sections = {
                 lualine_a = { "mode" },
@@ -37,10 +26,15 @@ return {
                 lualine_y = {},
                 lualine_z = {}
             },
-            tabline = {},
-            winbar = {},
-            inactive_winbar = {},
-            extensions = {}
+            winbar = {
+                lualine_a = {},
+                lualine_b = {},
+                lualine_c = { function() return require 'nvim-treesitter.statusline'.statusline(90) end },
+                lualine_x = {},
+                lualine_y = {},
+                lualine_z = {}
+            },
+            extensions = { 'oil' }
         },
         -- }}}
     },
@@ -57,7 +51,7 @@ return {
             -- Disable animations
             animation = false,
             -- Excludes buffers from the tabline
-            exclude_ft = { 'netrw' },
+            exclude_ft = { 'netrw', 'oil', 'help' },
             exclude_name = { 'package.json' },
         },
         config = function()
@@ -86,5 +80,19 @@ return {
             -- Optional settings go here!
             -- e.g.) vim.g.unception_open_buffer_in_new_tab = true
         end
-    }
+    },
+    {
+        "stevearc/oil.nvim",
+        lazy = false,
+        opts = {
+            delete_to_trash = true,
+            keymaps = {
+                ["q"] = { "actions.close", mode = "n" },
+            },
+        },
+        keys = {
+            { "-", "<CMD>Oil<CR>", { desc = "Open parent directory" } },
+        },
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+    },
 }
