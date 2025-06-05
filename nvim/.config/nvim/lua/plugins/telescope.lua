@@ -23,7 +23,7 @@ return {
             vim.keymap.set("n", "<leader>ff", builtin.git_files, { desc = "Find files (git)" })
             vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Live grep" })
             vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Select buffers" })
-            vim.keymap.set("n", "zf", builtin.spell_suggest, {})
+            vim.keymap.set("n", "zf", builtin.spell_suggest, { desc = "Show spelling suggestions" })
 
             -- Helps
             vim.keymap.set("n", "<leader>fq", builtin.quickfix, { desc = "Open quickfix picker" })
@@ -33,7 +33,7 @@ return {
             -- LSP
             vim.keymap.set("n", "glr", builtin.lsp_references, { desc = "Search LSP references" })
             vim.keymap.set("n", "gli", builtin.lsp_incoming_calls, { desc = "Search LSP incoming calls" })
-            vim.keymap.set("n", "glo", builtin.lsp_outgoing_calls, { dessc = "Search out-going calls" })
+            vim.keymap.set("n", "glo", builtin.lsp_outgoing_calls, { desc = "Search out-going calls" })
             vim.keymap.set("n", "<leader>ls", builtin.lsp_document_symbols, { desc = "List document dymbols from LSP" })
         end
         -- }}}

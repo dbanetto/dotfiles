@@ -26,6 +26,14 @@ return {
                 lualine_y = {},
                 lualine_z = {}
             },
+            winbar = {
+                lualine_a = {},
+                lualine_b = {},
+                lualine_c = { function() return require 'nvim-treesitter.statusline'.statusline(90) end },
+                lualine_x = {},
+                lualine_y = {},
+                lualine_z = {}
+            },
             extensions = { 'oil' }
         },
         -- }}}
