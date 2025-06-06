@@ -44,18 +44,4 @@ return {
         }
         -- }}}
     },
-    {
-        -- gitsigns {{{
-        "NeogitOrg/neogit",
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-            "sindrets/diffview.nvim",
-            "nvim-telescope/telescope.nvim",
-        },
-        config = true,
-        keys = {
-            { "<leader>gt", "<CMD>Neogit kind=auto<CR>", { desc = "Open NeoGit UI" } },
-        },
-        -- }}}
-    },
 }
