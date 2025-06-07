@@ -95,4 +95,9 @@ return {
         },
         dependencies = { "nvim-tree/nvim-web-devicons" },
     },
+    {
+        "kylechui/nvim-surround",
+        event = "VeryLazy",
+        opt = {},
+    },
 }

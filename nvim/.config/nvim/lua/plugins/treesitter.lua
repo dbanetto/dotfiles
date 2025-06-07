@@ -68,7 +68,7 @@ return {
         opts = {
             enable = true,
             mode = "topline",
-            separator = '~',
+            separator = '-',
             line_numbers = true
         }
     },
