@@ -41,6 +41,11 @@ return {
                                         GOPACKAGESDRIVER = "./tools/gopackagesdriver.sh"
                                     },
                                     directoryFilters = {
+                                        "-build/bazel-bin",
+                                        "-build/bazel-out",
+                                        "-build/bazel-testlogs",
+                                        "-build/bazel-cloud",
+                                        "-bazel-k8s",
                                         "-bazel-bin",
                                         "-bazel-out",
                                         "-bazel-testlogs",
@@ -213,6 +218,8 @@ return {
                 sources = {
                     { name = "nvim_lsp" },
                     { name = "luasnip" },
+                    { name = "orgmode" },
+                    { name = 'render-markdown' },
                 },
             }
         end
