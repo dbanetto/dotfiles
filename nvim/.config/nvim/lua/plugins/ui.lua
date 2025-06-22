@@ -144,16 +144,44 @@ return {
                 end,
             })
 
+            -- TODO: Do host detection for orgfile location
+            local syncDir = '~/Library/Mobile Documents/com~apple~CloudDocs/org'
+
             -- Setup orgmode
             require('orgmode').setup({
-                org_agenda_files = { '~/orgfiles/**/*', '~/Library/Mobile Documents/com~apple~CloudDocs/org/**/*' },
+                org_agenda_files = { '~/orgfiles/**/*', syncDir .. '/**/*' },
                 org_default_notes_file = '~/orgfiles/refile.org',
                 org_capture_templates = {
-                    l = { description = 'Learning', template = '* %? :learning:\n\tReference: [[file:%F]]\n\t%u' },
-                    t = { description = 'Task', template = '* TODO %?\n  %u' },
-                    d = { description = 'Deadline', template = '* TODO %?\n  DEADLINE: %^t\n  %u' },
-                    s = { description = 'Schedule', template = '* %?\n  SCHEDULED: %^t\n  %u' },
-                    m = { description = 'Meeting', template = '* %?\n  SCHEDULED: %^t\n  %u\n** Attendes\n** Notes\n\t\n** Actions\n - [ ] Take notes\n' },
+                    n = {
+                        description = 'Note',
+                        template = '* %? :note:\n  %u\n  '
+                    },
+                    l = {
+                        description = 'Learning',
+                        template = '* %? :learning:\n  %u\n  Reference: [[file:%F]]\n'
+                    },
+                    t = {
+                        description = 'Task',
+                        template = '* TODO %? \n  %u\n  '
+                    },
+                    d = {
+                        description = 'Deadline',
+                        template = '* TODO %?\n  DEADLINE: %^t\n  %u'
+                    },
+                    s = {
+                        description = 'Schedule',
+                        template = '* %?\n  SCHEDULED: %^t\n  %u'
+                    },
+                    m = {
+                        description = 'Meeting',
+                        template =
+                        '* %?\n  SCHEDULED: %^t\n  %u\n** Attendes\n** Notes\n\t\n** Actions\n - [ ] Take notes\n'
+                    },
+                    j = {
+                        description = 'Journal',
+                        template = '\n*** %<%Y-%m-%d> %<%A>\n**** %U\n\n%?',
+                        target = syncDir .. '/personal/journal.org'
+                    },
                 },
                 mappings = {
                     global = {
