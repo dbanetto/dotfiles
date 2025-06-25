@@ -1,4 +1,46 @@
-local bazel_root = { 'WORKSPACE', 'WORKSPACE.bazel', 'MODULE.bazel' }
+-- LSP Settings
+vim.lsp.config('gopls', {
+    settings = {
+        workspaceFiles = {
+            "**/BUILD",
+            "**/WORKSPACE",
+            "**/*.{bzl,bazel}",
+        },
+        env = {
+            GOPACKAGESDRIVER = "./tools/gopackagesdriver.sh"
+        },
+        directoryFilters = {
+            "-build/bazel-bin",
+            "-build/bazel-out",
+            "-build/bazel-testlogs",
+            "-build/bazel-cloud",
+            "-bazel-k8s",
+            "-bazel-bin",
+            "-bazel-out",
+            "-bazel-testlogs",
+            "-bazel-k8s",
+            "-bazel-infrastructure",
+        },
+    }
+})
+
+vim.lsp.config('starpls', {
+    cmd = {
+        'starpls',
+        'server',
+        '--experimental_infer_ctx_attributes',
+        '--experimental_enable_label_completions'
+    },
+    root_markers = { 'WORKSPACE', 'WORKSPACE.bazel', 'MODULE.bazel' },
+})
+
+vim.lsp.config('jsonnet_ls', {
+    settings = {
+        formatting = {
+            -- StringStyle = 'double',
+        },
+    }
+})
 
 return {
     {
@@ -11,80 +53,17 @@ return {
         config = function()
             require('mason-lspconfig').setup({
                 ensure_installed = {
-                    "pylyzer",
-                    "gopls",
-                    "lua_ls",
-                    "jsonnet_ls",
-                    -- "bashls",
                     "buf_ls",
+                    "gopls",
                     "helm_ls",
+                    "jsonnet_ls",
+                    "lua_ls",
+                    "pylyzer",
+                    "starpls",
                     "terraformls",
                     "tflint",
                     "zls",
                 },
-                handlers = {
-                    -- Default setup for all LSP servers
-                    function(server_name)
-                        vim.lsp.enable(server_name)
-                    end,
-                    -- Custom setup for specific LSP servers
-                    ['gopls'] = function()
-                        vim.lsp.config('gopls', {
-                            ['gopls'] = {
-                                settings = {
-                                    workspaceFiles = {
-                                        "**/BUILD",
-                                        "**/WORKSPACE",
-                                        "**/*.{bzl,bazel}",
-                                    },
-                                    env = {
-                                        GOPACKAGESDRIVER = "./tools/gopackagesdriver.sh"
-                                    },
-                                    directoryFilters = {
-                                        "-build/bazel-bin",
-                                        "-build/bazel-out",
-                                        "-build/bazel-testlogs",
-                                        "-build/bazel-cloud",
-                                        "-bazel-k8s",
-                                        "-bazel-bin",
-                                        "-bazel-out",
-                                        "-bazel-testlogs",
-                                        "-bazel-k8s",
-                                        "-bazel-infrastructure",
-                                    },
-                                }
-                            }
-                        })
-                        vim.lsp.enable('gopls')
-                    end,
-                    ['rust_analyzer'] = function()
-                        -- Let rustaceanvim handle the rust_analyzer config
-                        vim.lsp.config('rust_analyzer', {})
-                        vim.lsp.enable('rust_analyzer')
-                    end,
-                    ['starpls'] = function()
-                        vim.lsp.config('starpls', {
-                            cmd = {
-                                'starpls',
-                                'server',
-                                '--experimental_infer_ctx_attributes',
-                                '--experimental_enable_label_completions'
-                            },
-                            filetypes = { 'bzl', },
-                            root_markers = { 'WORKSPACE', 'WORKSPACE.bazel', 'MODULE.bazel' },
-                        })
-                        vim.lsp.enable('starpls')
-                    end,
-                    ['jsonnet_ls'] = function()
-                        vim.lsp.config('jsonnet_ls', {
-                            cmd = { 'jsonnet-language-server' },
-                            filetypes = { 'jsonnet', 'libsonnet' },
-                            single_file_support = true,
-                            root_markers = bazel_root,
-                        })
-                        vim.lsp.enable('jsonnet_ls')
-                    end,
-                }
             })
         end,
     },
