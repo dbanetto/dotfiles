@@ -42,6 +42,19 @@ vim.lsp.config('jsonnet_ls', {
     }
 })
 
+vim.lsp.config('tofu_ls', {
+    filetypes = { 'opentofu', 'opentofu-vars', 'terraform', 'terraform-lsp' },
+})
+
+-- Autoformat for TF terraform files
+-- Requires `terraform` to be present in the $PATH
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+    pattern = { "*.tf", "*.tfvars" },
+    callback = function()
+        vim.lsp.buf.format()
+    end,
+})
+
 return {
     {
         'williamboman/mason-lspconfig.nvim',
@@ -61,6 +74,7 @@ return {
                     "pylyzer",
                     "starpls",
                     "terraformls",
+                    "tofu_ls",
                     "tflint",
                     "zls",
                 },
@@ -206,36 +220,10 @@ return {
     },
     {
         'mrcjkb/rustaceanvim',
-        version = '^5',
+        version = '^6',
         lazy = false,
         init = function()
-            vim.g.rustaceanvim = {
-                server = {
-                    cmd = function() -- `:h rustaceanvim.mason`
-                        local mason_registry = require('mason-registry')
-
-                        if (mason_registry:is_installed('rust-analyzer')) then
-                            -- This may need to be tweaked depending on the operating system.
-                            local ra = mason_registry.get_package('rust-analyzer')
-                            local ra_filename = ra:get_receipt():get().links.bin['rust-analyzer']
-                            return { ('%s/%s'):format(ra:get_install_path(), ra_filename or 'rust-analyzer') }
-                        else
-                            -- global installation
-                            return { 'rust-analyzer' }
-                        end
-                    end,
-                    default_settings = {
-                        ['rust-analyzer'] = {
-                            cargo = {
-                                targetDir = '/tmp/rust-analyzer-cargo',
-                            },
-                            lru = {
-                                capacity = 64, -- number of syntax trees kept in memory (defaults to 128)
-                            },
-                        },
-                    },
-                },
-            }
+            vim.g.rustaceanvim = {}
         end,
     },
 }
