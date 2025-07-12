@@ -102,7 +102,10 @@ return {
         "folke/which-key.nvim",
         event = "VeryLazy",
         opts = {
-            preset = "modern",
+            preset = "classic",
+            delay = function(ctx)
+                return ctx.plugin and 200 or 500
+            end,
         },
         keys = {
             {
@@ -113,5 +116,8 @@ return {
                 desc = "Buffer Local Keymaps (which-key)",
             },
         },
+        disable = {
+            ft = { 'help' }
+        }
     }
 }

@@ -61,6 +61,8 @@ alias ghm="git checkout \$(git_default_branch)"
 alias gcd="cd \$(git rev-parse --show-toplevel)"
 alias gw="git worktree"
 
+alias org="$EDITOR ~/orgfiles/refile.org"
+
 function ghr() {
   # alias of git checkout $(select from git recent)
   local recent
