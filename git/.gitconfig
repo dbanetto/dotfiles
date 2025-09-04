@@ -55,6 +55,9 @@
 	user = dbanetto
 [commit]
 	verbose = 1
+	gpgsign = true
+[tag]
+	gpgsign = true
 [diff]
 	compactionheuristic = 1
     algorithm = "histogram"
