@@ -4,8 +4,8 @@ return {
         opts = function()
             local settings = require('config.ai')
 
-            vim.keymap.set({ "n", "v" }, "<C-a>", "<cmd>CodeCompanionActions<cr>", { noremap = true, silent = true })
-            vim.keymap.set({ "n", "v" }, "<leader>a", "<cmd>CodeCompanionChat Toggle<cr>",
+            vim.keymap.set({ "n", "v" }, "<leader>aa", "<cmd>CodeCompanionActions<cr>", { noremap = true, silent = true })
+            vim.keymap.set({ "n", "v" }, "<leader>ac", "<cmd>CodeCompanionChat Toggle<cr>",
                 { noremap = true, silent = true })
             vim.keymap.set("v", "ga", "<cmd>CodeCompanionChat Add<cr>", { noremap = true, silent = true })
 
@@ -33,8 +33,6 @@ return {
                 },
                 strategies = settings.strategies,
                 adapters = settings.adapters,
-                -- v18 upgrade warning
-                ignore_warnings = true,
             }
         end,
         dependencies = {

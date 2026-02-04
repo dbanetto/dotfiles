@@ -84,6 +84,10 @@ function ghr() {
   done
 }
 
+function gcp() {
+  git commit $@ && git push
+}
+
 function gwcd() {
   # List out git worktrees and change directory to them.
   local recent

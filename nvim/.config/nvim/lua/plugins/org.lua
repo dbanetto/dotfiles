@@ -1,3 +1,5 @@
+local orgdir = '~/orgfiles'
+
 return {
     {
         'nvim-orgmode/orgmode',
@@ -15,7 +17,7 @@ return {
             vim.keymap.set('n', '<leader>ofh', require("telescope").extensions.orgmode.search_headings)
             vim.keymap.set('n', '<leader>off', function()
                     require('telescope.builtin').find_files({
-                        cwd = '~/Library/Mobile Documents/com~apple~CloudDocs/org',
+                        cwd = orgdir,
                     })
                 end,
                 { desc = 'Telescope find org files' })
@@ -29,12 +31,10 @@ return {
                 end,
             })
 
-            local orgdir = '~/orgfiles'
-
             -- Setup orgmode
             require('orgmode').setup({
                 org_agenda_files = { orgdir .. '/**/*' },
-                org_default_notes_file = '~/orgfiles/refile.org',
+                org_default_notes_file = orgdir .. '/refile.org',
                 org_startup_indented = true,
                 org_todo_keywords = { 'TODO', 'NEXT', 'WAITING', '|', 'DONE', 'DELEGATED' },
                 org_capture_templates = {

@@ -55,6 +55,12 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
     end,
 })
 
+-- LSP for orgmode
+vim.lsp.enable('org')
+
+-- Disable LSP logging file
+vim.lsp.set_log_level("off")
+
 return {
     {
         'williamboman/mason-lspconfig.nvim',
