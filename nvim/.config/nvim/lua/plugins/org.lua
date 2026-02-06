@@ -65,8 +65,8 @@ return {
                     },
                     j = {
                         description = 'Journal',
-                        template = '\n*** %<%Y-%m-%d> %<%A>\n**** %U\n\n%?',
-                        target = orgdir .. '/personal/journal.org'
+                        template = '\n* %U\n%?',
+                        target = orgdir .. '/personal/Journelly.org'
                     },
                 },
                 mappings = {
