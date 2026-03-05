@@ -79,6 +79,13 @@
     enabled = true
 [core]
 	excludesfile = /Users/davidb/.config/gitignore
+[merge]
+	tool = "nvim"
+[mergetool]
+	keepBackup = false
+	prompt = false
+[mergetool "nvim"]
+	cmd = "nvim -d -c \"wincmd l\" -c \"norm ]c\" \"$LOCAL\" \"$MERGED\" \"$REMOTE\""
 
 # Canva-specifc changes
 [includeIf "gitdir:~/work/"]

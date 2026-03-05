@@ -21,18 +21,9 @@ return {
                         fold_context = true,
                     },
                 },
-                extensions = {
-                    mcphub = {
-                        callback = "mcphub.extensions.codecompanion",
-                        opts = {
-                            make_vars = true,
-                            make_slash_commands = true,
-                            show_result_in_chat = true
-                        }
-                    }
-                },
                 strategies = settings.strategies,
                 adapters = settings.adapters,
+                mcp = settings.mcp,
             }
         end,
         dependencies = {
@@ -60,22 +51,5 @@ return {
                 },
             },
         },
-    },
-    {
-        "ravitemer/mcphub.nvim",
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-        },
-        build = "bundled_build.lua", -- Bundles `mcp-hub` binary along with the neovim plugin
-        config = function()
-            require("mcphub").setup({
-                use_bundled_binary = true, -- Use local `mcp-hub` binary
-                extensions = {
-                    avante = {
-                        make_slash_commands = true, -- make /slash commands from MCP server prompts
-                    }
-                }
-            })
-        end,
     },
 }

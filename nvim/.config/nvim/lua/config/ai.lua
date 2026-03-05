@@ -54,7 +54,8 @@ return {
             end,
             gemma34b = function()
                 return require("codecompanion.adapters").extend("ollama", {
-                    name = "gemma34b", -- Give this adapter a different name to differentiate it from the default ollama adapter
+                    -- Give this adapter a different name to differentiate it from the default ollama adapter
+                    name = "gemma34b",
                     opts = {
                         vision = true,
                         stream = true,
@@ -78,4 +79,7 @@ return {
 
         },
     },
+    mcp = {
+        servers = {}
+    }
 }
