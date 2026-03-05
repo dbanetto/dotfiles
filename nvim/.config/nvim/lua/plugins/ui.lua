@@ -95,14 +95,16 @@ return {
         },
         dependencies = { "nvim-tree/nvim-web-devicons" },
     },
-    {
-        "tpope/vim-surround",
-    },
+    { "tpope/vim-surround", },
     {
         "folke/which-key.nvim",
         event = "VeryLazy",
         opts = {
             preset = "classic",
+            plugins = {
+                -- Disable registers to prevent ghostty permission issues
+                registers = false,
+            },
             delay = function(ctx)
                 return ctx.plugin and 200 or 500
             end,

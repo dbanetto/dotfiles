@@ -16,6 +16,8 @@ return {
             },
         },
         config = function()
+            require('telescope').load_extension('git_worktree')
+
             local builtin = require("telescope.builtin")
             -- Add leader shortcuts
             vim.keymap.set("n", "<leader><space>", builtin.resume, { desc = "Resume telescope picker" })
@@ -27,14 +29,17 @@ return {
 
             -- Helps
             vim.keymap.set("n", "<leader>fq", builtin.quickfix, { desc = "Open quickfix picker" })
-            vim.keymap.set("n", "<leader>fm", builtin.keymaps, { desc = "Keymaps help" })
-            vim.keymap.set("n", "<leader>fp", builtin.pickers, { desc = "Open previous picker menu" })
 
             -- LSP
             vim.keymap.set("n", "glr", builtin.lsp_references, { desc = "Search LSP references" })
             vim.keymap.set("n", "gli", builtin.lsp_incoming_calls, { desc = "Search LSP incoming calls" })
             vim.keymap.set("n", "glo", builtin.lsp_outgoing_calls, { desc = "Search out-going calls" })
             vim.keymap.set("n", "<leader>ls", builtin.lsp_document_symbols, { desc = "List document dymbols from LSP" })
+
+            -- Git git_worktree
+            vim.keymap.set("n", "<leader>gb", builtin.git_branches, { desc = "Select git branches" })
+            vim.keymap.set("n", "<leader>gw", "<cmd>Telescope git_worktree<CR>", { desc = "Select git workspace" })
+            vim.keymap.set("n", "<leader>gW", "<cmd>Telescope create_git_worktree<CR>", { desc = "Create git workspace" })
         end
         -- }}}
     },
@@ -45,5 +50,5 @@ return {
         config = function()
             require("telescope").load_extension "frecency"
         end,
-    },
+    }
 }
