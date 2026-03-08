@@ -62,5 +62,20 @@ return {
                 vim.cmd(config.update_on_change_command)
             end)
         end
+    },
+    {
+        "akinsho/git-conflict.nvim",
+        opts = {
+            default_mappings = {
+                -- [x & ]x to move between conflicts
+                -- c${binding}
+                ours = 'o',
+                theirs = 't',
+                none = '0',
+                both = 'b',
+                next = 'n',
+                prev = 'p',
+            },
+        }
     }
 }
