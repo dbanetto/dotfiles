@@ -25,13 +25,13 @@ vim.lsp.config('gopls', {
 })
 
 vim.lsp.config('starpls', {
+    filetypes = { 'bzl' },
     cmd = {
         'starpls',
         'server',
         '--experimental_infer_ctx_attributes',
         '--experimental_enable_label_completions'
     },
-    root_markers = { 'WORKSPACE', 'WORKSPACE.bazel', 'MODULE.bazel' },
 })
 
 vim.lsp.config('jsonnet_ls', {
@@ -59,7 +59,7 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 vim.lsp.enable('org')
 
 -- Disable LSP logging file
-vim.lsp.set_log_level("off")
+vim.lsp.log.set_level("off")
 
 return {
     {
@@ -94,44 +94,6 @@ return {
             'williamboman/mason-lspconfig.nvim',
         },
         init = function()
-            vim.diagnostic.config({
-                virtual_text = true,
-                underline = false,
-                severity_sort = true,
-                -- This is the correct way to configure diagnostic signs
-                signs = {
-                    text = {
-                        [vim.diagnostic.severity.ERROR] = '',
-                        [vim.diagnostic.severity.WARN] = '',
-                        [vim.diagnostic.severity.INFO] = '',
-                        [vim.diagnostic.severity.HINT] = '',
-                    },
-                    numhl = {
-                        [vim.diagnostic.severity.ERROR] = 'DiagnosticSignError',
-                        [vim.diagnostic.severity.WARN] = 'DiagnosticSignWarn',
-                        [vim.diagnostic.severity.INFO] = 'DiagnosticSignInfo',
-                        [vim.diagnostic.severity.HINT] = 'DiagnosticSignHint',
-                    },
-                },
-            })
-
-            -- Using `vim.fn.sign_define()` to configure diagnostic signs is deprecated in favour of the `signs` table
-            -- in `vim.diagnostic.config()` but telescope.nvim still relies on it (`vim.fn.sign_getdefined(...)`
-            -- https://github.com/nvim-telescope/telescope.nvim/blob/master/lua/telescope/make_entry.lua#L1151)
-            for name, icon in pairs({
-                Error = '',
-                Warn = '',
-                Info = '',
-                Hint = '',
-            }) do
-                local hl = 'DiagnosticSign' .. name
-                vim.fn.sign_define(hl, { text = icon, numhl = hl })
-            end
-
-            vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
-                border = 'rounded',
-            })
-
             vim.api.nvim_create_autocmd("CursorHold", {
                 callback = function()
                     vim.diagnostic.open_float({
@@ -147,6 +109,10 @@ return {
             vim.api.nvim_create_autocmd("LspAttach", {
                 callback = function(args)
                     local client = vim.lsp.get_client_by_id(args.data.client_id)
+
+                    if client == nil then
+                        return
+                    end
 
                     -- Format on save
                     if client:supports_method('textDocument/formatting') then
@@ -232,7 +198,7 @@ return {
     },
     {
         'mrcjkb/rustaceanvim',
-        version = '^6',
+        version = '^9',
         lazy = false,
         init = function()
             vim.g.rustaceanvim = {}

@@ -86,6 +86,10 @@
 	prompt = false
 [mergetool "nvim"]
 	cmd = "nvim -d -c \"wincmd l\" -c \"norm ]c\" \"$LOCAL\" \"$MERGED\" \"$REMOTE\""
+[difftool "nvim_difftool"]
+  cmd = nvim -c \"packadd nvim.difftool\" -d \"$LOCAL\" \"$REMOTE\"
+[diff]
+  tool = nvim_difftool
 
 # Canva-specifc changes
 [includeIf "gitdir:~/work/"]

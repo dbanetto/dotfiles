@@ -1,56 +1,65 @@
 return {
     {
         "nvim-treesitter/nvim-treesitter",
-        main = "nvim-treesitter.configs",
+        lazy = false,
         build = ":TSUpdate",
+        branch = "main",
         opts = {
-            -- A list of parser names, or "all" (the five listed parsers should always be installed)
-            ensure_installed = {
-                "rust",
-                "terraform",
-                "go",
-                "lua",
-                "vim",
-                "gitcommit",
-                "query",
-            },
             ignore_install = { 'org' },
             sync_install = false,
             auto_install = true,
-            highlight = {
-                enable = true,
-            },
-            indent = { enable = true },
-            incremental_selection = { enable = false },
-            textobjects = {
-                select = {
-                    enable = true,
-                    keymaps = {
-                        -- Built-in captures.
-                        ["af"] = "@function.outer",
-                        ["if"] = "@function.inner",
-                        ["aa"] = "@parameter.outer",
-                        ["ia"] = "@parameter.inner",
-                        ["ac"] = "@class.outer",
-                        ["ic"] = "@class.inner",
-                    },
-                },
-                move = {
-                    enable = true,
-                    goto_next_start = { ["]f"] = "@function.outer", ["]c"] = "@class.outer", ["]a"] = "@parameter.inner" },
-                    goto_next_end = { ["]F"] = "@function.outer", ["]C"] = "@class.outer", ["]A"] = "@parameter.inner" },
-                    goto_previous_start = { ["[f"] = "@function.outer", ["[c"] = "@class.outer", ["[a"] = "@parameter.inner" },
-                    goto_previous_end = { ["[F"] = "@function.outer", ["[C"] = "@class.outer", ["[A"] = "@parameter.inner" },
-                },
-            },
-        }
+        },
+        init = function()
+            local ensureInstalled = {
+                "gitcommit",
+                "go",
+                "jsonnet",
+                "lua",
+                "query",
+                "rust",
+                "terraform",
+                "vim",
+            }
+            local alreadyInstalled = require('nvim-treesitter.config').get_installed()
+            local parsersToInstall = vim.iter(ensureInstalled)
+                :filter(function(parser)
+                    return not vim.tbl_contains(alreadyInstalled, parser)
+                end)
+                :totable()
+            require('nvim-treesitter').install(parsersToInstall)
+        end
     },
     {
         -- nvim-treesitter-textobjects {{{
         "nvim-treesitter/nvim-treesitter-textobjects",
+        branch = "main",
         dependencies = {
             "nvim-treesitter/nvim-treesitter",
         },
+        init = function()
+            -- Disable entire built-in ftplugin mappings to avoid conflicts.
+            -- See https://github.com/neovim/neovim/tree/master/runtime/ftplugin for built-in ftplugins.
+            vim.g.no_plugin_maps = true
+        end,
+        config = function()
+            -- put your config here
+
+            vim.keymap.set({ "x", "o" }, "am", function()
+                require "nvim-treesitter-textobjects.select".select_textobject("@function.outer", "textobjects")
+            end)
+            vim.keymap.set({ "x", "o" }, "im", function()
+                require "nvim-treesitter-textobjects.select".select_textobject("@function.inner", "textobjects")
+            end)
+            vim.keymap.set({ "x", "o" }, "ac", function()
+                require "nvim-treesitter-textobjects.select".select_textobject("@class.outer", "textobjects")
+            end)
+            vim.keymap.set({ "x", "o" }, "ic", function()
+                require "nvim-treesitter-textobjects.select".select_textobject("@class.inner", "textobjects")
+            end)
+            vim.keymap.set({ "x", "o" }, "as", function()
+                require "nvim-treesitter-textobjects.select".select_textobject("@local.scope", "locals")
+            end)
+        end,
         --- }}}
     },
     {
