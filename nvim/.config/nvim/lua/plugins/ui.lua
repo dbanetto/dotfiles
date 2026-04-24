@@ -12,7 +12,7 @@ return {
             },
             sections = {
                 lualine_a = { "mode" },
-                lualine_b = { "branch", "diagnostics" },
+                lualine_b = {},
                 lualine_c = { "%f" },
                 lualine_x = { "encoding", "fileformat", "filetype" },
                 lualine_y = { "progress" },
@@ -21,20 +21,44 @@ return {
             inactive_sections = {
                 lualine_a = {},
                 lualine_b = {},
-                lualine_c = { "%F" },
-                lualine_x = { "location" },
-                lualine_y = {},
-                lualine_z = {}
-            },
-            winbar = {
-                lualine_a = {},
-                lualine_b = {},
                 lualine_c = {},
                 lualine_x = {},
                 lualine_y = {},
                 lualine_z = {}
             },
-            extensions = { 'oil' }
+            winbar = {
+                lualine_a = { "branch" },
+                lualine_b = { "diagnostics" },
+                lualine_c = {},
+                lualine_x = {},
+                lualine_y = {},
+                lualine_z = {
+                    {
+                        'lsp_status',
+                        icon = '', -- f013
+                        symbols = {
+                            -- Standard unicode symbols to cycle through for LSP progress:
+                            spinner = { '⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏' },
+                            -- Standard unicode symbol for when LSP is done:
+                            done = '✓',
+                            -- Delimiter inserted between LSP names:
+                            separator = ' ',
+                        },
+                        -- List of LSP names to ignore (e.g., `null-ls`):
+                        ignore_lsp = {},
+                        -- Display the LSP name
+                        show_name = true,
+                    } }
+            },
+            inactive_winbar = {
+                lualine_a = {},
+                lualine_b = { "branch" },
+                lualine_c = { "%F" },
+                lualine_x = { "location" },
+                lualine_y = {},
+                lualine_z = {},
+            },
+            extensions = { 'oil', 'quickfix' }
         },
         -- }}}
     },
