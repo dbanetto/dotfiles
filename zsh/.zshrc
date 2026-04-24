@@ -60,6 +60,7 @@ alias grh="git reset --hard"
 alias ghm="git checkout \$(git_default_branch)"
 alias gcd="cd \$(git rev-parse --show-toplevel)"
 alias gw="git worktree"
+alias gmt="git mergetool"
 
 alias org="$EDITOR ~/orgfiles/refile.org"
 
