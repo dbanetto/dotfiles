@@ -27,8 +27,8 @@ return {
                 lualine_z = {}
             },
             winbar = {
-                lualine_a = { "branch" },
-                lualine_b = { "diagnostics" },
+                lualine_a = {},
+                lualine_b = { "branch", "diagnostics" },
                 lualine_c = {},
                 lualine_x = {},
                 lualine_y = {},

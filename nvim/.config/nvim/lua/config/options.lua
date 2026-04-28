@@ -52,8 +52,8 @@ vim.opt.textwidth = 0
 
 -- Folding
 vim.opt.foldmethod = 'expr'
-vim.opt.foldexpr = 'vim.treesitter.foldexpr()'
-vim.opt.foldlevelstart = 4
+vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+vim.opt.foldlevelstart = 99
 
 -- Undo file
 vim.opt.undofile = true
