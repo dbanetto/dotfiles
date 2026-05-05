@@ -11,12 +11,14 @@ return {
         },
         init = function()
             local ensureInstalled = {
+                "bash",
                 "gitcommit",
                 "go",
                 "jsonnet",
                 "lua",
                 "query",
                 "rust",
+                "starlark",
                 "terraform",
                 "vim",
             }

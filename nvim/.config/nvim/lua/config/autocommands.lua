@@ -32,9 +32,11 @@ vim.api.nvim_create_autocmd("WinEnter", {
 })
 
 vim.api.nvim_create_autocmd('FileType', {
-    callback = function()
+    callback = function(ev)
         -- Enable treesitter highlighting and disable regex syntax
-        pcall(vim.treesitter.start)
+        pcall(vim.treesitter.start, ev.buf)
+        -- Ensure legacy syntax is used
+        vim.bo[ev.buf].syntax = 'ON'
     end,
 })
 

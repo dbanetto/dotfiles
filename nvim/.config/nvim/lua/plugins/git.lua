@@ -66,16 +66,8 @@ return {
     {
         "akinsho/git-conflict.nvim",
         opts = {
-            default_mappings = {
-                -- [x & ]x to move between conflicts
-                -- c${binding}
-                ours = 'o',
-                theirs = 't',
-                none = '0',
-                both = 'b',
-                next = 'n',
-                prev = 'p',
-            },
+            default_mappings = true,
+            default_commands = true,
         }
     }
 }
