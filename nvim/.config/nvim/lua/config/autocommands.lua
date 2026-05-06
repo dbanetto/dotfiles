@@ -54,9 +54,11 @@ vim.api.nvim_create_autocmd("FileType", {
         end
 
         if vim.treesitter.language.add(lang) then
-            vim.treesitter.start(args.buf, lang)
+            pcall(vim.treesitter.start, args.buf, lang)
             vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
             vim.wo[0][0].foldmethod = "expr"
+            -- Ensure legacy syntax is used when needed.
+            vim.bo[args.buf].syntax = 'ON'
         end
     end,
 })
