@@ -77,9 +77,8 @@ return {
                     "helm_ls",
                     "jsonnet_ls",
                     "lua_ls",
-                    "pylyzer",
+                    "zuban", -- python lsp
                     "starpls",
-                    "terraformls",
                     "tofu_ls",
                     "tflint",
                     "zls",
