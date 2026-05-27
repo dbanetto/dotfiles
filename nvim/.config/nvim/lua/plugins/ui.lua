@@ -110,6 +110,7 @@ return {
         lazy = false,
         opts = {
             delete_to_trash = true,
+            watch_for_changes = true,
             keymaps = {
                 ["q"] = { "actions.close", mode = "n" },
             },
