@@ -120,6 +120,11 @@ return {
         },
         dependencies = { "nvim-tree/nvim-web-devicons" },
     },
+    {
+        "chentoast/marks.nvim",
+        event = "VeryLazy",
+        opts = {},
+    },
     { "tpope/vim-surround", },
     {
         "folke/which-key.nvim",
